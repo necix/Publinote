@@ -1,6 +1,6 @@
 #Publinote
 
-Gestion des classements Tutorat de première année de médine.
+Gestion des classements Tutorat de première année de médecine.
 
 ## Laravel PHP Framework
 
