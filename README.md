@@ -1,6 +1,7 @@
 #Publinote
 
 Gestion des classements Tutorat de première année de médecine.
+Projet commun entre les tutorats de Lyon est et de Lyon sud.
 
 ## Laravel PHP Framework
 
