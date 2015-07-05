@@ -20,6 +20,32 @@ Générer la clé de l'application
 php artisan key:generate
 ```
 
+##Installer la base de données
+Installer la migration avec
+```
+php artisan migrate
+```
+Mettre à jour la migration en cas de changements
+```
+php artisan migrate:rollback
+```
+Populer la base de données (phase de tests)
+```
+php artisan db:seed
+```
+
+##Configurer le CAS
+Renommer le fichier `cas.php.example` en `cas.php` et y renseigner les informations nécessaires.
+
+###Simuler une authentification CAS
+Modifier la ligne 88 :
+```
+'cas_pretend_user' => env('CAS_PRETEND_USER', ''),
+```
+en
+```
+'cas_pretend_user' => env('CAS_PRETEND_USER', 'numéro'),
+```
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
