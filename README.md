@@ -7,7 +7,7 @@ Projet commun entre les tutorats de Lyon est et de Lyon sud.
 
 Commencer par installer composer selon les instructions données ici: https://getcomposer.org/download/
 
-Après avoir cloné le dépôt de Publinote, renommer le fichier `.env.example` en `.env`. Modifier ce dernier fichier en y renseignant les informations d'accès à la base de données.
+Après avoir cloné le dépôt de Publinote, créer un fichier `.env` à partir du fichier `.env.example`. Modifier ce dernier fichier en y renseignant les informations d'accès à la base de données.
 
 Installer les dépendances de Laravel et les mettre à jour avec
 ```
