@@ -34,7 +34,7 @@ Populer la base de données (phase de tests)
 php artisan db:seed
 ```
 
-##Configurer le CAS
+##Configurer l'accès au CAS
 Renommer le fichier `cas.php.example` en `cas.php` et y renseigner les informations nécessaires.
 
 ###Simuler une authentification CAS
