@@ -1,35 +1,104 @@
-<?php
+<?php	namespace App;
 
-namespace App;
+use DB;
+use Session;
+use Cas;
+use Exception;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract
+class User 
 {
-    use Authenticatable, CanResetPassword;
-
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'users';
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['name', 'email', 'password'];
-
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = ['password', 'remember_token'];
+	public static function connect()
+	{
+		Cas::authenticate();
+		
+		$user_id = strtr(Cas::user(), ['p' => 1,
+									   'q' => 2,
+									   'r' => 3,
+									   's' => 4,
+									   't' => 5,
+									   'u' => 6,
+									   'v' => 7,
+									   'w' => 8,
+									   'x' => 9]);
+		$user_id = intval($user_id);
+		
+		
+		if(DB::table('utilisateur')->where('utilisateur_ID', $user_id)->count() == 0)
+			//si le numéro cas n'est pas connu alors on retourne faux
+			return false;
+		
+		//dans le cas contraire on récupère les infos dans un bdd et on les stocke dans une variable de session	
+		Session::put('user_id', $user_id);
+		
+		Session::put('first_name', 
+						DB::table('utilisateur')->where('utilisateur_ID', $user_id)->pluck('utilisateur_Prenom') );
+		Session::put('last_name', 
+						DB::table('utilisateur')->where('utilisateur_ID', $user_id)->pluck('utilisateur_Nom') );
+		
+		//recherche du statut parmi les étudiants...
+		if(DB::table('utilisateur__etudiant')->where('utilisateur__etudiant_RefUtilisateur', $user_id)->count() == 1)
+			$user_status = 'student';
+			
+		//...sinon dans l'équipe
+		else 
+			{
+				$status_id = DB::table('utilisateur__equipe')->where('utilisateur__equipe_RefUtilisateur', $user_id)->pluck('utilisateur__equipe_Role');
+				$user_status = DB::table('ref__utilisateur__equipe_Role')->where('ref__utilisateur__equipe_Role_ID', $status_id)->pluck('ref__utilisateur__equipe_Role');
+			}
+			
+		Session::put('status', $user_status );
+		if(Session('status') == '')
+			throw new Exception('Staut non identifié');
+		
+		return true;
+	}
+	
+	public static function deconnect($route = '/')
+	{
+		if(self::isConnected())
+		{
+			Session::flush();
+			DB::table('sessions')->where('id', Session::getId())->delete();
+			Cas::logout(url($route));
+		}
+	}
+	
+	public static function isConnected()
+	{
+		if(Session::has('user_id'))
+			return true;
+	
+		return false;
+	}
+	
+	public static function id()
+	{
+		if(Session::has('user_id') && Session('user_id') != '')
+			return Session('user_id');
+	
+		throw new Exception('User not connected');
+	}
+	
+	public static function firstName()
+	{
+		if(Session::has('firstName') && Session('firstName') != '')
+			return Session('firstName');
+	
+		throw new Exception('User not connected');
+	}
+	
+	public static function lastName()
+	{
+		if(Session::has('lastName') && Session('lastName') != '')
+			return Session('lastName');
+	
+		throw new Exception('User not connected');
+	}
+	public static function status()
+	{
+		if(Session::has('status') && Session('status') != '')
+			return Session('status');
+	
+		throw new Exception('User not connected');
+	}
 }

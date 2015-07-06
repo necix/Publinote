@@ -1,0 +1,432 @@
+90F6 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+90F6 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+90F6 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+90F6 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+90F6 .|    <= ''
+90F6 .<= ''
+90F6 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+90F6 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+90F6 .<= ''
+90F6 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+90F6 .|    Not a logout request [Client.php:1689]
+90F6 .<= ''
+D9F5 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+D9F5 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+D9F5 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+D9F5 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+D9F5 .|    <= ''
+D9F5 .<= ''
+D9F5 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+D9F5 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+D9F5 .<= ''
+D9F5 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+D9F5 .|    Not a logout request [Client.php:1689]
+D9F5 .<= ''
+9768 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+9768 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+9768 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+9768 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+9768 .|    <= ''
+9768 .<= ''
+9768 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+9768 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+9768 .<= ''
+9768 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+9768 .|    Not a logout request [Client.php:1689]
+9768 .<= ''
+7ED1 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+7ED1 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+7ED1 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+7ED1 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+7ED1 .|    <= ''
+7ED1 .<= ''
+7ED1 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+7ED1 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+7ED1 .<= ''
+7ED1 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+7ED1 .|    Not a logout request [Client.php:1689]
+7ED1 .<= ''
+B9DE .START phpCAS-1.3.3 ****************** [CAS.php:438]
+B9DE .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+B9DE .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+B9DE .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+B9DE .|    <= ''
+B9DE .<= ''
+B9DE .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+B9DE .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+B9DE .<= ''
+B9DE .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+B9DE .|    Not a logout request [Client.php:1689]
+B9DE .<= ''
+75A4 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+75A4 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+75A4 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+75A4 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+75A4 .|    <= ''
+75A4 .<= ''
+75A4 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+75A4 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+75A4 .<= ''
+75A4 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+75A4 .|    Not a logout request [Client.php:1689]
+75A4 .<= ''
+FF90 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+FF90 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+FF90 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+FF90 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+FF90 .|    <= ''
+FF90 .<= ''
+FF90 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+FF90 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+FF90 .<= ''
+FF90 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+FF90 .|    Not a logout request [Client.php:1689]
+FF90 .<= ''
+698F .START phpCAS-1.3.3 ****************** [CAS.php:438]
+698F .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+698F .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+698F .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+698F .|    <= ''
+698F .<= ''
+698F .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+698F .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+698F .<= ''
+698F .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+698F .|    Not a logout request [Client.php:1689]
+698F .<= ''
+C5A9 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+C5A9 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+C5A9 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+C5A9 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+C5A9 .|    <= ''
+C5A9 .<= ''
+C5A9 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+C5A9 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+C5A9 .<= ''
+C5A9 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+C5A9 .|    Not a logout request [Client.php:1689]
+C5A9 .<= ''
+09C2 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+09C2 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+09C2 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+09C2 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+09C2 .|    <= ''
+09C2 .<= ''
+09C2 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+09C2 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+09C2 .<= ''
+09C2 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+09C2 .|    Not a logout request [Client.php:1689]
+09C2 .<= ''
+6037 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+6037 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+6037 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+6037 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+6037 .|    <= ''
+6037 .<= ''
+6037 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+6037 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+6037 .<= ''
+6037 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+6037 .|    Not a logout request [Client.php:1689]
+6037 .<= ''
+4EA6 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+4EA6 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+4EA6 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+4EA6 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+4EA6 .|    <= ''
+4EA6 .<= ''
+4EA6 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+4EA6 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+4EA6 .<= ''
+4EA6 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+4EA6 .|    Not a logout request [Client.php:1689]
+4EA6 .<= ''
+DE69 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+DE69 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+DE69 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+DE69 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+DE69 .|    <= ''
+DE69 .<= ''
+DE69 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+DE69 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+DE69 .<= ''
+DE69 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+DE69 .|    Not a logout request [Client.php:1689]
+DE69 .<= ''
+BC8B .START phpCAS-1.3.3 ****************** [CAS.php:438]
+BC8B .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+BC8B .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+BC8B .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+BC8B .|    <= ''
+BC8B .<= ''
+BC8B .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+BC8B .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+BC8B .<= ''
+BC8B .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+BC8B .|    Not a logout request [Client.php:1689]
+BC8B .<= ''
+870D .START phpCAS-1.3.3 ****************** [CAS.php:438]
+870D .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+870D .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+870D .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+870D .|    <= ''
+870D .<= ''
+870D .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+870D .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+870D .<= ''
+870D .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+870D .|    Not a logout request [Client.php:1689]
+870D .<= ''
+1DFF .START phpCAS-1.3.3 ****************** [CAS.php:438]
+1DFF .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+1DFF .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+1DFF .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+1DFF .|    <= ''
+1DFF .<= ''
+1DFF .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+1DFF .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+1DFF .<= ''
+1DFF .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+1DFF .|    Not a logout request [Client.php:1689]
+1DFF .<= ''
+016B .START phpCAS-1.3.3 ****************** [CAS.php:438]
+016B .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+016B .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+016B .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+016B .|    <= ''
+016B .<= ''
+016B .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+016B .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+016B .<= ''
+016B .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+016B .|    Not a logout request [Client.php:1689]
+016B .<= ''
+7C0E .START phpCAS-1.3.3 ****************** [CAS.php:438]
+7C0E .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+7C0E .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+7C0E .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+7C0E .|    <= ''
+7C0E .<= ''
+7C0E .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+7C0E .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+7C0E .<= ''
+7C0E .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+7C0E .|    Not a logout request [Client.php:1689]
+7C0E .<= ''
+311E .START phpCAS-1.3.3 ****************** [CAS.php:438]
+311E .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+311E .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+311E .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+311E .|    <= ''
+311E .<= ''
+311E .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+311E .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+311E .<= ''
+311E .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+311E .|    Not a logout request [Client.php:1689]
+311E .<= ''
+6A05 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+6A05 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+6A05 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+6A05 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+6A05 .|    <= ''
+6A05 .<= ''
+6A05 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+6A05 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+6A05 .<= ''
+6A05 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+6A05 .|    Not a logout request [Client.php:1689]
+6A05 .<= ''
+54DC .START phpCAS-1.3.3 ****************** [CAS.php:438]
+54DC .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+54DC .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+54DC .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+54DC .|    <= ''
+54DC .<= ''
+54DC .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+54DC .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+54DC .<= ''
+54DC .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+54DC .|    Not a logout request [Client.php:1689]
+54DC .<= ''
+749C .START phpCAS-1.3.3 ****************** [CAS.php:438]
+749C .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+749C .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+749C .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+749C .|    <= ''
+749C .<= ''
+749C .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+749C .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+749C .<= ''
+749C .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+749C .|    Not a logout request [Client.php:1689]
+749C .<= ''
+4B44 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+4B44 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+4B44 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+4B44 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+4B44 .|    <= ''
+4B44 .<= ''
+4B44 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+4B44 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+4B44 .<= ''
+4B44 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+4B44 .|    Not a logout request [Client.php:1689]
+4B44 .<= ''
+3374 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+3374 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+3374 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+3374 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+3374 .|    <= ''
+3374 .<= ''
+3374 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+3374 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+3374 .<= ''
+3374 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+3374 .|    Not a logout request [Client.php:1689]
+3374 .<= ''
+0D78 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+0D78 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+0D78 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+0D78 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+0D78 .|    <= ''
+0D78 .<= ''
+0D78 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+0D78 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+0D78 .<= ''
+0D78 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+0D78 .|    Not a logout request [Client.php:1689]
+0D78 .<= ''
+07E2 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+07E2 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+07E2 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+07E2 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+07E2 .|    <= ''
+07E2 .<= ''
+07E2 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+07E2 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+07E2 .<= ''
+07E2 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+07E2 .|    Not a logout request [Client.php:1689]
+07E2 .<= ''
+8F6C .START phpCAS-1.3.3 ****************** [CAS.php:438]
+8F6C .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+8F6C .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+8F6C .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+8F6C .|    <= ''
+8F6C .<= ''
+8F6C .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+8F6C .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+8F6C .<= ''
+8F6C .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+8F6C .|    Not a logout request [Client.php:1689]
+8F6C .<= ''
+6EBE .START phpCAS-1.3.3 ****************** [CAS.php:438]
+6EBE .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+6EBE .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+6EBE .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+6EBE .|    <= ''
+6EBE .<= ''
+6EBE .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+6EBE .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+6EBE .<= ''
+6EBE .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+6EBE .|    Not a logout request [Client.php:1689]
+6EBE .<= ''
+E6D9 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+E6D9 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+E6D9 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+E6D9 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+E6D9 .|    <= ''
+E6D9 .<= ''
+E6D9 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+E6D9 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+E6D9 .<= ''
+E6D9 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+E6D9 .|    Not a logout request [Client.php:1689]
+E6D9 .<= ''
+2B0B .START phpCAS-1.3.3 ****************** [CAS.php:438]
+2B0B .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+2B0B .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+2B0B .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+2B0B .|    <= ''
+2B0B .<= ''
+2B0B .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+2B0B .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+2B0B .<= ''
+2B0B .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+2B0B .|    Not a logout request [Client.php:1689]
+2B0B .<= ''
+6588 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+6588 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+6588 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+6588 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+6588 .|    <= ''
+6588 .<= ''
+6588 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+6588 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+6588 .<= ''
+6588 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+6588 .|    Not a logout request [Client.php:1689]
+6588 .<= ''
+EF0D .START phpCAS-1.3.3 ****************** [CAS.php:438]
+EF0D .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+EF0D .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+EF0D .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+EF0D .|    <= ''
+EF0D .<= ''
+EF0D .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+EF0D .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+EF0D .<= ''
+EF0D .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+EF0D .|    Not a logout request [Client.php:1689]
+EF0D .<= ''
+0E45 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+0E45 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+0E45 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+0E45 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+0E45 .|    <= ''
+0E45 .<= ''
+0E45 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+0E45 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+0E45 .<= ''
+0E45 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+0E45 .|    Not a logout request [Client.php:1689]
+0E45 .<= ''
+D009 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+D009 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+D009 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+D009 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+D009 .|    <= ''
+D009 .<= ''
+D009 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+D009 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+D009 .<= ''
+D009 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+D009 .|    Not a logout request [Client.php:1689]
+D009 .<= ''
+FA7A .START phpCAS-1.3.3 ****************** [CAS.php:438]
+FA7A .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+FA7A .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+FA7A .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+FA7A .|    <= ''
+FA7A .<= ''
+FA7A .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+FA7A .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+FA7A .<= ''
+FA7A .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+FA7A .|    Not a logout request [Client.php:1689]
+FA7A .<= ''
+609C .START phpCAS-1.3.3 ****************** [CAS.php:438]
+609C .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+609C .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+609C .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+609C .|    <= ''
+609C .<= ''
+609C .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+609C .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+609C .<= ''
+609C .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+609C .|    Not a logout request [Client.php:1689]
+609C .<= ''

@@ -11,6 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return 'Bienvenue sur publinote';
-});
+//accueil, identification, deconnexion
+Route::get('/', 'AccessController@index');
+Route::get('/connecter', 'SessionCASController@connect');
+Route::get('/deconnecter', 'SessionCASController@deconnect');
+
+//espace étudiant
+Route::get('/mes_resultats', 'StudentController@index');
+
+//espace tuteur
+Route::get('/espace_tuteur', 'TutorController@index');
+
+//espace admin
+Route::get('/espace_admin', 'AdminController@index');
