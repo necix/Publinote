@@ -15,6 +15,7 @@
 Route::get('/', 'AccessController@index');
 Route::get('/connecter', 'SessionCASController@connect');
 Route::get('/deconnecter', 'SessionCASController@deconnect');
+Route::get('/inconnu', function(){ return view('inconnu'); });
 
 //espace étudiant
 Route::get('/mes_resultats', 'StudentController@index');
