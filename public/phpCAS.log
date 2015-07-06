@@ -430,3 +430,15 @@ FA7A .<= ''
 609C .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
 609C .|    Not a logout request [Client.php:1689]
 609C .<= ''
+5738 .START phpCAS-1.3.3 ****************** [CAS.php:438]
+5738 .=> phpCAS::client('2.0', 'cas.univ-lyon1.fr', 443, '/cas') [Sso.php:76]
+5738 .|    => CAS_Client::__construct('2.0', false, 'cas.univ-lyon1.fr', 443, '/cas', true) [CAS.php:340]
+5738 .|    |    Starting a new session sbedpdv5d9n7u6m94ss6t9qfg7 [Client.php:906]
+5738 .|    <= ''
+5738 .<= ''
+5738 .=> phpCAS::setNoCasServerValidation() [Sso.php:98]
+5738 .|    You have configured no validation of the legitimacy of the cas server. This is not recommended for production use. [CAS.php:1553]
+5738 .<= ''
+5738 .=> CAS_Client::handleLogoutRequests(true, false) [CAS.php:1193]
+5738 .|    Not a logout request [Client.php:1689]
+5738 .<= ''
