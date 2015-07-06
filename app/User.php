@@ -81,16 +81,16 @@ class User
 	
 	public static function firstName()
 	{
-		if(Session::has('firstName') && Session('firstName') != '')
-			return Session('firstName');
+		if(Session::has('first_name') && Session('first_name') != '')
+			return Session('first_name');
 	
 		throw new Exception('User not connected');
 	}
 	
 	public static function lastName()
 	{
-		if(Session::has('lastName') && Session('lastName') != '')
-			return Session('lastName');
+		if(Session::has('last_name') && Session('last_name') != '')
+			return Session('last_name');
 	
 		throw new Exception('User not connected');
 	}
