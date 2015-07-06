@@ -46,6 +46,12 @@ en
 ```
 'cas_pretend_user' => env('CAS_PRETEND_USER', 'numéro'),
 ```
+Les numéros CAS crées par le seeder sont :
+- `p1501001` à `p1501003` pour les comptes **admin**,
+- `p1502001` à `p1502020` pour les comptes **tuteur**,
+- `p1503001` à `p1503090` pour les comptes **étudiant**,
+- `p1504001` à `p1504010` pour les comptes **étudiant essa**.
+
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
