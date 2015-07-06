@@ -45,14 +45,15 @@ class CreateUtilisateur extends Migration
 		});
 		
 		//utilisateur__equipe
-		Schema::dropIfExists('utilisateur__Equipe');
+		Schema::dropIfExists('utilisateur__equipe');
         Schema::create('utilisateur__equipe', function(Blueprint $table) {
-			$table->mediumInteger('utilisateur__equipe_RefUtilisateur',8)
+			$table->bigInteger('utilisateur__equipe_RefUtilisateur')
 				  ->references('utilisateur_ID')->on('utilisateur')
 				  ->onDelete('cascade');
 			$table->tinyInteger('utilisateur__equipe_Role')
 				  ->references('ref__utilisateur__equipe_Role_ID')->on('ref__utilisateur__equipe_Role')
-				  ->onDelete('cascade');
+				  ->onDelete('cascade')
+				  ->unsigned();
 			$table->smallInteger('utilisateur__equipe_Affectation')->unsigned();
 		});
 		
@@ -66,10 +67,10 @@ class CreateUtilisateur extends Migration
 		// utilisateur__etudiant
 		Schema::dropIfExists('utilisateur__etudiant');
         Schema::create('utilisateur__etudiant', function(Blueprint $table) {
-			$table->mediumInteger('utilisateur__etudiant_RefUtilisateur', 8)
+			$table->bigInteger('utilisateur__etudiant_RefUtilisateur')
 					->references('utilisateur_ID')->on('utilisateur')
 					->onDelete('cascade');
-			$table->smallInteger('utilisateur__etudiant_Anonymat');
+			$table->bigInteger('utilisateur__etudiant_Anonymat');
 			$table->mediumInteger('utilisateur__etudiant_Profil')
 					->references('ref__utilisateur__etudiant_Profil_ID')->on('ref__utilisateur__etudiant_Profil');
 			$table->tinyInteger('utilisateur__etudiant_Scolarite');
