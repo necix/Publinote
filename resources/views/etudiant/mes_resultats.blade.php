@@ -10,10 +10,10 @@
 
 
 @section('title')
-Mes résultats 
 @if($nb_results != 0)
 ({{ $nb_results }})
 @endif
+Mes résultats 
 @stop
 
 @section('contenu')
