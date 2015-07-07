@@ -74,10 +74,10 @@ class CreateUtilisateur extends Migration
 					->references('utilisateur_ID')->on('utilisateur')
 					->onDelete('cascade');
 			//$table->primary('utilisateur__etudiant_RefUtilisateur');
-			$table->smallInteger('utilisateur__etudiant_Anonymat')->unsigned();
+			$table->smallInteger('utilisateur__etudiant_Anonymat')->unsigned()->nullable();
 			$table->tinyInteger('utilisateur__etudiant_Profil')->unsigned()
-					->references('ref__utilisateur__etudiant_Profil_ID')->on('ref__utilisateur__etudiant_Profil');
-			$table->tinyInteger('utilisateur__etudiant_Scolarite')->unsigned();
+					->references('ref__utilisateur__etudiant_Profil_ID')->on('ref__utilisateur__etudiant_Profil')->nullable();
+			$table->tinyInteger('utilisateur__etudiant_Scolarite')->unsigned()->nullable();
 			;
 		 });
 		 

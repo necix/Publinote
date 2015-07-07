@@ -101,4 +101,25 @@ class User
 	
 		throw new Exception('User not connected');
 	}
+	
+	public static function parametersDefined($user_id = null)
+	{
+		if($user_id == null)
+			$user_id = self::id();
+			
+		if(self::status() != 'student')
+			throw new Exception('Not a student');
+		
+		//vérification du profil étudiant
+		if(DB::table('utilisateur__etudiant')->where('utilisateur__etudiant_RefUtilisateur', $user_id)->whereNull('utilisateur__etudiant_Profil')->count() != 0)
+			return false;
+		
+		//vérification du statut primant/doublant/triplant
+		else if(DB::table('utilisateur__etudiant')->where('utilisateur__etudiant_RefUtilisateur', $user_id)->whereNull('utilisateur__etudiant_Scolarite')->count() != 0)
+			return false;
+		
+		else
+			return true;
+		
+	}
 }

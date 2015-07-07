@@ -17,7 +17,12 @@ class Student
     public function handle($request, Closure $next)
     {
 		if(User::isConnected() && User::status() == 'student')
-			return $next($request);
+		{
+			if($request->url() != url('/parametres') && !User::parametersDefined() )
+				return redirect('/parametres');
+			else
+				return $next($request);
+		}
 		else
 			return redirect('/');
     }
