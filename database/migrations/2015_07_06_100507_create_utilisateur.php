@@ -15,17 +15,19 @@ class CreateUtilisateur extends Migration
 		//table utilisateur
         Schema::dropIfExists('utilisateur');
 		Schema::create('utilisateur', function(Blueprint $table) {
-			$table->mediumInteger('utilisateur_ID',8)->unique()->unsigned();
+			$table->mediumInteger('utilisateur_ID')->unsigned();
+			$table->primary('utilisateur_ID');
 			$table->string('utilisateur_Nom', 25);
 			$table->string('utilisateur_Prenom', 25);
 			$table->string('utilisateur_AdresseMail', 100);
+			
 		});
 		
 		//ref__utilisateur__equipe_Role
 		Schema::dropIfExists('ref__utilisateur__equipe_Role');
 		Schema::create('ref__utilisateur__equipe_Role', function(Blueprint $table) {
-			$table->increments('ref__utilisateur__equipe_Role_ID', 3);
-			$table->string('ref__utilisateur__equipe_Role', 10);
+			$table->increments('ref__utilisateur__equipe_Role_ID');
+			$table->string('ref__utilisateur__equipe_Role', 50);
 			
 		});
 		
@@ -47,10 +49,11 @@ class CreateUtilisateur extends Migration
 		//utilisateur__equipe
 		Schema::dropIfExists('utilisateur__equipe');
         Schema::create('utilisateur__equipe', function(Blueprint $table) {
-			$table->bigInteger('utilisateur__equipe_RefUtilisateur')
+			$table->mediumInteger('utilisateur__equipe_RefUtilisateur')->unsigned()
 				  ->references('utilisateur_ID')->on('utilisateur')
 				  ->onDelete('cascade');
-			$table->tinyInteger('utilisateur__equipe_Role')
+			$table->primary('utilisateur__equipe_RefUtilisateur');
+			$table->tinyInteger('utilisateur__equipe_Role')->unsigned()
 				  ->references('ref__utilisateur__equipe_Role_ID')->on('ref__utilisateur__equipe_Role')
 				  ->onDelete('cascade')
 				  ->unsigned();
@@ -67,14 +70,20 @@ class CreateUtilisateur extends Migration
 		// utilisateur__etudiant
 		Schema::dropIfExists('utilisateur__etudiant');
         Schema::create('utilisateur__etudiant', function(Blueprint $table) {
-			$table->bigInteger('utilisateur__etudiant_RefUtilisateur')
+			$table->mediumInteger('utilisateur__etudiant_RefUtilisateur')->unsigned()
 					->references('utilisateur_ID')->on('utilisateur')
 					->onDelete('cascade');
-			$table->bigInteger('utilisateur__etudiant_Anonymat');
-			$table->mediumInteger('utilisateur__etudiant_Profil')
+			//$table->primary('utilisateur__etudiant_RefUtilisateur');
+			$table->smallInteger('utilisateur__etudiant_Anonymat')->unsigned();
+			$table->tinyInteger('utilisateur__etudiant_Profil')->unsigned()
 					->references('ref__utilisateur__etudiant_Profil_ID')->on('ref__utilisateur__etudiant_Profil');
-			$table->tinyInteger('utilisateur__etudiant_Scolarite');
+			$table->tinyInteger('utilisateur__etudiant_Scolarite')->unsigned();
+			;
 		 });
+		 
+		 //définit la clé primaire de utilisateur__etudiant
+		 //étrangement ne fonctionne pas avec la fonction primary()
+		 DB::statement("ALTER TABLE `utilisateur__etudiant` ADD PRIMARY KEY(`utilisateur__etudiant_RefUtilisateur`)");
     }
 
     /**

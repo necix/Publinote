@@ -63,7 +63,7 @@ class UtilisateurSeeder extends Seeder
 											  
 			DB::table('utilisateur__etudiant')->insert(['utilisateur__etudiant_RefUtilisateur' => $id,
 													  'utilisateur__etudiant_Profil' =>$ref_classique_id,
-													  'utilisateur__etudiant_Anonymat' =>1000+$id,
+													  'utilisateur__etudiant_Anonymat' =>1000+$i,
 													  'utilisateur__etudiant_Scolarite' =>rand(1,2)]);
 		}
 			//10 santards
@@ -78,7 +78,7 @@ class UtilisateurSeeder extends Seeder
 											  
 			DB::table('utilisateur__etudiant')->insert(['utilisateur__etudiant_RefUtilisateur' => $id,
 													  'utilisateur__etudiant_Profil' =>$ref_santard_id,
-													  'utilisateur__etudiant_Anonymat' =>2000+$id,
+													  'utilisateur__etudiant_Anonymat' =>2000+$i,
 													  'utilisateur__etudiant_Scolarite' =>rand(1,2)]);
 		}
     }
