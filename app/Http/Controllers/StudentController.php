@@ -27,4 +27,18 @@ class StudentController extends Controller
 										],
 					]);
     }
+	
+	public function getParams()
+	{
+		return view('etudiant.parametres');
+	}
+	
+	public function postParams(StudentParamsRequest $r)
+	{
+	}
+	
+	public function testPanel(PanelRequest $r)
+	{
+		return view('etudiant.ajax.volet_epreuve');
+	}
 }

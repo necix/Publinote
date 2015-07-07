@@ -19,6 +19,11 @@ Route::get('/inconnu', function(){ return view('inconnu'); });
 
 //espace étudiant
 Route::get('/mes_resultats', 'StudentController@index');
+Route::get('/epreuve/{n}', 'StudentController@show($n)');
+Route::get('/parametres', 'StudentController@getParams');
+Route::post('/parametres', 'StudentController@postParams');
+
+Route::post('/volet_epreuve', 'StudentController@testPanel');
 
 //espace tuteur
 Route::get('/espace_tuteur', 'TutorController@index');
