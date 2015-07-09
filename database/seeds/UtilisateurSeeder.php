@@ -11,75 +11,80 @@ class UtilisateurSeeder extends Seeder
      */
     public function run()
     {
-		//on vide toutes les tables préexistantes
-		DB::table('utilisateur')->truncate();
-		DB::table('utilisateur__equipe')->truncate();
-		DB::table('utilisateur__etudiant')->truncate();
-		DB::table('ref__utilisateur__equipe_Role')->truncate();
-		DB::table('ref__programme')->truncate();
-		DB::table('ref__utilisateur__etudiant_Profil')->truncate();
-        
-		//création de 3 admin
-		DB::table('ref__utilisateur__equipe_Role')->insert(['ref__utilisateur__equipe_Role' => 'admin']);
-		$ref_admin_id = DB::table('ref__utilisateur__equipe_Role')->where('ref__utilisateur__equipe_Role', 'admin')->pluck('ref__utilisateur__equipe_Role_ID');
+		/**
+		 *Crée des utilisateurs fictifs.
+		 *
+		 */
 		
+		//on vide toutes les tables  associées aux utilisateurs
+		DB::table('utilisateur')->truncate();
+		DB::table('utilisateur_ue')->truncate();	
+		DB::table('etiquette')->truncate();	
+		DB::table('profil_particulier_etudiant')->truncate();	
+		
+		//création de 3 admin
 		for($i = 1; $i < 4; $i++)
 		{
 			$id = 11501000+$i;
-			DB::table('utilisateur')->insert(['utilisateur_ID' => $id,
-											  'utilisateur_Nom' => 'NomAdmin'.$i,
-											  'utilisateur_Prenom' => 'PrenomAdmin'.$i]);
-											  
-			DB::table('utilisateur__equipe')->insert(['utilisateur__equipe_RefUtilisateur' => $id,
-													  'utilisateur__equipe_role' =>$ref_admin_id]);
+			DB::table('utilisateur')->insert(['id' => $id,
+											  'nom' => 'NomAdmin'.$i,
+											  'prenom' => 'PrenomAdmin'.$i,
+											  'statut' => 'admin']);
 		}
 		
 		//création de 20 tuteurs
-		DB::table('ref__utilisateur__equipe_Role')->insert(['ref__utilisateur__equipe_Role' => 'tuteur']);
-		$ref_tuteur_id = DB::table('ref__utilisateur__equipe_Role')->where('ref__utilisateur__equipe_Role', 'tuteur')->pluck('ref__utilisateur__equipe_Role_ID');
-		
+
 		for($i = 1; $i < 21; $i++)
 		{
 			$id = 11502000+$i;
-			DB::table('utilisateur')->insert(['utilisateur_ID' => $id,
-											  'utilisateur_Nom' => 'NomTuteur'.$i,
-											  'utilisateur_Prenom' => 'PrenomTuteur'.$i]);
-											  
-			DB::table('utilisateur__equipe')->insert(['utilisateur__equipe_RefUtilisateur' => $id,
-													  'utilisateur__equipe_role' =>$ref_tuteur_id]);
+			DB::table('utilisateur')->insert(['id' => $id,
+											  'nom' => 'NomTuteur'.$i,
+											  'prenom' => 'PrenomTuteur'.$i,
+											  'statut' => 'tutor']);
+									
+			//choix de l'ue d'affectation (affectation cyclique)
+			$session_scolaire_courrante_id = DB::table('session_scolaire')->whereNull('date_fin')->pluck('id');
+			
+			$ue_disponibles = DB::table('ue')->where('session_scolaire_id', $session_scolaire_courrante_id);
+			$nb_ue_disponibles = $ue_disponibles->count();
+			$ue_affectee_id = $ue_disponibles->offset($i % $nb_ue_disponibles)->pluck('id');
+			
+			DB::table('utilisateur_ue')->insert(['utilisateur_id' => $id,
+												 'ue_id' =>$ue_affectee_id]);
 		}
-		
+
 		//création de 100 étudiants
 			//90 classiques
-		DB::table('ref__utilisateur__etudiant_Profil')->insert(['ref__utilisateur__etudiant_Profil' => 'classique']);
-		$ref_classique_id = DB::table('ref__utilisateur__etudiant_Profil')->where('ref__utilisateur__etudiant_Profil', 'classique')->pluck('ref__utilisateur__etudiant_Profil_ID');
-
 		for($i = 1; $i < 91; $i++)
 		{
 			$id = 11503000+$i;
-			DB::table('utilisateur')->insert(['utilisateur_ID' => $id,
-											  'utilisateur_Nom' => 'NomEtudiant'.$i,
-											  'utilisateur_Prenom' => 'PrenomEtudiant'.$i]);
-											  
-			DB::table('utilisateur__etudiant')->insert(['utilisateur__etudiant_RefUtilisateur' => $id,
-													  'utilisateur__etudiant_Profil' =>$ref_classique_id,
-													  'utilisateur__etudiant_Anonymat' =>1000+$i,
-													  'utilisateur__etudiant_Scolarite' =>rand(1,2)]);
+			DB::table('utilisateur')->insert(['id' => $id,
+											  'nom' => 'NomEtudiant'.$i,
+											  'prenom' => 'PrenomEtudiant'.$i,
+											  'statut' => 'student',
+											  'scolarite' => rand(1,2) ]);
+			DB::table('etiquette')->insert(['utilisateur_id' => $id,
+											'numero' => 1000 + $i,
+											'date_attribution' => time()]);
 		}
 			//10 santards
-		DB::table('ref__utilisateur__etudiant_Profil')->insert(['ref__utilisateur__etudiant_Profil' => 'santard']);
-		$ref_santard_id = DB::table('ref__utilisateur__etudiant_Profil')->where('ref__utilisateur__etudiant_Profil', 'santard')->pluck('ref__utilisateur__etudiant_Profil_ID');
-				for($i = 1; $i < 11; $i++)
+			
+				//création du profil santard
+		DB::table('profil_particulier_etudiant')->insert(['titre' => 'ESSA', 'mode_calcul' => 'santard']);
+		$profil_santard_id = DB::table('profil_particulier_etudiant')->where('titre', 'ESSA')->pluck('id');
+		
+		for($i = 1; $i < 11; $i++)
 		{
 			$id = 11504000+$i;
-			DB::table('utilisateur')->insert(['utilisateur_ID' => $id,
-											  'utilisateur_Nom' => 'Groconar'.$i,
-											  'utilisateur_Prenom' => 'Santard'.$i]);
-											  
-			DB::table('utilisateur__etudiant')->insert(['utilisateur__etudiant_RefUtilisateur' => $id,
-													  'utilisateur__etudiant_Profil' =>$ref_santard_id,
-													  'utilisateur__etudiant_Anonymat' =>2000+$i,
-													  'utilisateur__etudiant_Scolarite' =>rand(1,2)]);
+			DB::table('utilisateur')->insert(['id' => $id,
+											  'nom' => 'Santard'.$i,
+											  'prenom' => 'Groconar'.$i,
+											  'profil_particulier_etudiant' => $profil_santard_id,
+											  'statut' => 'student',
+											  'scolarite' => rand(1,2)]);
+			DB::table('etiquette')->insert(['utilisateur_id' => $id,
+											'numero' => 2000 + $i,
+											'date_attribution' => time()]);
 		}
     }
 }

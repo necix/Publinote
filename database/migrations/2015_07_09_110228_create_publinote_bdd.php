@@ -12,9 +12,9 @@ class CreatePublinoteBdd extends Migration
      */
     public function up()
     {
-	    //table profil_etudiant
-        Schema::dropIfExists('profil_etudiant');
-		Schema::create('profil_etudiant', function(Blueprint $table) {
+	    //table profil_particulier_etudiant
+        Schema::dropIfExists('profil_particulier_etudiant');
+		Schema::create('profil_particulier_etudiant', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('titre', 20);
 			$table->string('mode_calcul', 20);
@@ -29,15 +29,15 @@ class CreatePublinoteBdd extends Migration
 			$table->string('prenom', 25);
 			$table->string('statut', 10);
 			$table->tinyInteger('scolarite')->unsigned()->nullable();
-			$table->tinyInteger('profil_etudiant')->references('id')->on('profil_etudiant')->nullable();
+			$table->tinyInteger('profil_particulier_etudiant')->references('id')->on('profil_etudiant')->nullable();
 		});
 		
 		//table etiquette
         Schema::dropIfExists('etiquette');
 		Schema::create('etiquette', function(Blueprint $table) {
-			$table->smallInteger('numero')->unsigned();
+			$table->mediumInteger('numero')->unsigned();
 			$table->primary('numero');
-			$table->timestamp('date_attribution');
+			$table->integer('date_attribution');
 			$table->integer('utilisateur_id')->references('id')->on('utilisateur');
 		});
 		
@@ -47,8 +47,8 @@ class CreatePublinoteBdd extends Migration
 			$table->increments('id');
 			$table->string('titre', 50);
 			$table->string('message_accueil')->nullable();
-			$table->timestamp('date_debut');
-			$table->timestamp('date_fin')->nullable();
+			$table->integer('date_debut');
+			$table->integer('date_fin')->nullable();
 			$table->smallInteger('numerus_clausus')->unsigned()->nullable();
 			$table->smallInteger('nombre_max_etrangers')->unsigned()->nullable();
 		});
@@ -65,7 +65,7 @@ class CreatePublinoteBdd extends Migration
 		//table utilisateur_ue 
         Schema::dropIfExists('utilisateur_ue');
 		Schema::create('utilisateur_ue', function(Blueprint $table) {
-			$table->mediumInteger('utilisateur_id')->references('id')->on('utilisateur');
+			$table->integer('utilisateur_id')->references('id')->on('utilisateur');
 			$table->mediumInteger('ue_id')->references('id')->on('ue');
 			$table->primary(['utilisateur_id', 'ue_id']);
 		});
@@ -77,7 +77,7 @@ class CreatePublinoteBdd extends Migration
 			$table->mediumInteger('session_scolaire_id')->references('id')->on('session_scolaire');
 			$table->mediumInteger('ue_id')->references('id')->on('ue');
 			$table->string('titre',20);
-			$table->timestamp('date');
+			$table->integer('date');
 			$table->boolean('visible');
 		});
 		
@@ -141,6 +141,7 @@ class CreatePublinoteBdd extends Migration
         Schema::dropIfExists('bareme');
 		Schema::create('bareme', function(Blueprint $table) {
 			$table->increments('id');
+			$table->string('titre',15);
 			$table->tinyInteger('0_discordance');
 			$table->tinyInteger('1_discordance');
 			$table->tinyInteger('2_discordance');
@@ -162,7 +163,7 @@ class CreatePublinoteBdd extends Migration
 			$table->boolean('item_c')->nullable();
 			$table->boolean('item_d')->nullable();
 			$table->boolean('item_e')->nullable();
-			$table->timestamp('date_modif');
+			$table->integer('date_modif');
 		});
 		
 		//table regroupement
@@ -170,7 +171,7 @@ class CreatePublinoteBdd extends Migration
 		Schema::create('regroupement', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('titre', 50);
-			$table->timestamp('date');
+			$table->integer('date');
 			$table->boolean('visible');
 			$table->smallInteger('session_scolaire_id')->references('id')->on('session');
 		});
