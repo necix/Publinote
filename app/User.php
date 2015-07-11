@@ -211,4 +211,33 @@ class User
 		
 		return $nb_tests_not_read + $nb_groupings_not_read;
 	}
+	
+	public static function getTest($test_id, $user_id = null)
+	{
+		if($user_id == null)
+			$user_id = self::id();
+		
+		//on le passe en mode lu
+		DB::table('utilisateur_note_epreuve')
+					->where('utilisateur_id', $user_id)
+					->where('epreuve_id', $test_id)
+					->update(['lu'=>true]);
+		return DB::table('epreuve')
+							->join('statistiques_epreuve', 'epreuve.id', '=', 'statistiques_epreuve.epreuve_id')
+							->join('utilisateur_note_epreuve', 'epreuve.id', '=', 'utilisateur_note_epreuve.epreuve_id')
+							->join('ue', 'epreuve.ue_id', '=', 'ue.id')
+							->where('epreuve.id', $test_id)
+							->where('utilisateur_note_epreuve.utilisateur_id', $user_id)
+							->select('epreuve.titre as title',
+									 'ue.sigle as category_sigle',
+									 'ue.titre as category_titre',
+									 'utilisateur_note_epreuve.classement as rank',
+									 'utilisateur_note_epreuve.note_reelle as mark_real',
+									 'utilisateur_note_epreuve.note_ajustee as mark_ajusted',
+									 'statistiques_epreuve.nb_participants as participants',
+									 'ue.note_max as mark_max',
+									 'epreuve.id as id')
+							->first();
+	}		
+
 }

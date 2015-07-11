@@ -43,8 +43,12 @@ class StudentController extends Controller
 		return 'e';
 	}
 	
-	public function testPanel(PanelRequest $r)
+	public function testPanel(Request $r)
 	{
-		return view('etudiant.ajax.volet_epreuve');
+		if(!$r->ajax())
+			abort(403);
+			
+		return view('etudiant.ajax.volet_epreuve')
+								->withTest(User::getTest($r->test));
 	}
 }

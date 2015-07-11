@@ -1,0 +1,9 @@
+{{ $test->title }}
+{{ $test->category_sigle }}
+{{ $test->category_titre }}
+{{ $test->rank }}
+{{ $test->participants }}
+{{ $test->mark_real }}
+{{ $test->mark_ajusted }}
+{{ $test->mark_max }}
+{{ $test->id }}

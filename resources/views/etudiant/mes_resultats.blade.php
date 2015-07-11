@@ -68,7 +68,7 @@ Mes résultats
 			<th>  </th>
 		</thead>
 		@foreach($groupings as $grouping)
-		<tr>
+		<tr >
 			<td>{{ date('j/m/Y', $grouping->date_grouping) }}</td>
 			<td>{{ $grouping->title }}</td>
 			<td>
@@ -83,5 +83,14 @@ Mes résultats
 		@endforeach
 	</table>
 	
+	<div id="panel_epreuve">
+	</div>
 	
+<script>
+	$(function(){
+		$("#panel_epreuve").load("{{ url('/volet_epreuve') }}", { 
+							test : 2,
+						});
+	})
+</script>
 @stop
