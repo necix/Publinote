@@ -27,11 +27,11 @@
 		
 		{{-- Mettre la barre de navigation à partir d'ici. Y insérer les variables ci-dessous au bon endroit ;) --}}
 		
-		{{$nb_results}}
+		{{$nb_results_not_read}}
 		{{strtoupper(substr($first_name, 0, 1).'. '.$last_name)}}
-		{{url('/parametres')}}
-		{{url('/aide')}}
-		{{url('/deconnecter')}}
+		<a href="{{ url('/parametres') }}">Parametres</a>
+		<a href="{{ url('/aide') }}">Aide</a>
+		<a href="{{url('/deconnecter')}}">Se deconnecter</a>
 		
 		
 		{{--Message flash qui disparait tout seul--}}
