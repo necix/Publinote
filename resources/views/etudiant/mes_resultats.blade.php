@@ -58,4 +58,30 @@ Mes résultats
 	</table>
 	@endif
 	
+		<table class="table table-bordered table-striped table-condensed">
+		<thead>
+			<th> Date</th>
+			<th> Titre </th>
+			<th> Catégorie </th>
+			<th> Classement </th>
+			<th> Lu ? </th>
+			<th>  </th>
+		</thead>
+		@foreach($groupings as $grouping)
+		<tr>
+			<td>{{ date('j/m/Y', $grouping->date_grouping) }}</td>
+			<td>{{ $grouping->title }}</td>
+			<td>
+				@foreach($grouping_categories[$grouping->id] as $category)
+					{{ $category }}
+				@endforeach
+			</td>
+			<td>{{ $grouping->rank }}/{{ $grouping->participants }}</td> 
+			<td>{{ $grouping->read }} </td>
+			<td>{{ $grouping->id }}</td>
+		</tr>
+		@endforeach
+	</table>
+	
+	
 @stop

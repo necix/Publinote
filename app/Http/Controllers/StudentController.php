@@ -27,16 +27,10 @@ class StudentController extends Controller
 					'home_message' => '',
 					'tests_with_mark' => User::getTestsWithMark(),
 					'tests_without_mark' => User::getTestsWithoutMark(),
+					'groupings' => User::getGroupingsWithMark(),
+					'grouping_categories' => User::getGroupingCategories(),
 			]);
 			
-        // return view('etudiant.mes_resultats')
-					// ->with([ 'nb_results' => 5,
-							// 'first_name' => User::firstName(),
-							// 'last_name' => User::lastName(),
-							// 'home_message' => '',
-							// 'tests' => [[ 'date_creation' => '4/10/2015', 'title' => 'Épreuve 1', 'category' => 'UE1', 'status' => 'en attente', 'rank' => '305', 'participants' => '1852', 'read' => true, 'id' => 17 ]
-										// ],
-					// ]);
     }
 	
 	public function getParams()

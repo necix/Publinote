@@ -168,8 +168,37 @@ class User
 			$user_id = self::id();
 		
 		//regroupements d'épreuves classées
+		$groupings = DB::table('regroupement')
+								->join('utilisateur_note_regroupement', 'regroupement.id', '=', 'utilisateur_note_regroupement.regroupement_id')
+								->join('statistiques_regroupement', 'regroupement.id', '=', 'statistiques_regroupement.regroupement_id')
+								->where('utilisateur_note_regroupement.utilisateur_id', $user_id)
+								->select('regroupement.date as date_grouping', 
+										 'regroupement.titre as title',
+										 'utilisateur_note_regroupement.lu as read',
+										 'utilisateur_note_regroupement.classement as rank',
+										 'statistiques_regroupement.nb_participants as participants',
+										 'regroupement.id as id')
+								->get();
+		return $groupings;
+	}
+	
+	public static function getGroupingCategories($user_id = null)
+	{
+		if($user_id == null)
+			$user_id = self::id();
+			
+		$groupings = DB::table('regroupement_epreuve')
+								->join('regroupement', 'regroupement_epreuve.regroupement_id', '=', 'regroupement.id')
+								->join('epreuve', 'regroupement_epreuve.epreuve_id', '=', 'epreuve.id')
+								->orderBy('epreuve.ue_id')
+								->select('regroupement.id as id',
+										 'epreuve.ue_id as ue_id')
+								->get();
 		
-		return $tests;
+		foreach($groupings as $grouping)
+			$categories[$grouping->id][] = DB::table('ue')->where('id', $grouping->ue_id)->pluck('sigle');
+		
+		return $categories;
 	}
 	
 	public static function nbResultsNotRead($user_id = null)
