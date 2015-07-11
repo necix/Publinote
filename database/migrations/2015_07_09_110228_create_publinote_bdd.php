@@ -60,6 +60,7 @@ class CreatePublinoteBdd extends Migration
 			$table->string('sigle', 10);
 			$table->string('titre', 50);
 			$table->integer('session_scolaire_id')->references('id')->on('session_scolaire');
+			$table->tinyInteger('note_max')->unsigned()->default(20);
 		});
 		
 		//table utilisateur_ue 
@@ -183,6 +184,7 @@ class CreatePublinoteBdd extends Migration
 			$table->mediumInteger('regroupement_id')->references('id')->on('regroupement');
 			$table->mediumInteger('epreuve_id')->references('id')->on('epreuve');
 			$table->primary(['regroupement_id', 'epreuve_id']);
+			$table->tinyInteger('coefficient')->unsigned();
 		});
 		
 		//table statistiques_regroupement

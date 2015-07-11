@@ -25,16 +25,20 @@ class SessionScolaireSeeder extends Seeder
 		DB::table('ue')->insert([
 									['sigle' => 'UE 1',
 									'titre' => 'Chimie, biochimie, biologie moléculaire',
-									'session_scolaire_id' => $session_scolaire_id],
+									'session_scolaire_id' => $session_scolaire_id,
+									'note_max' => 20],
 									['sigle' => 'UE 2',
 									'titre' => 'Biologie cellulaire',
-									'session_scolaire_id' => $session_scolaire_id],
+									'session_scolaire_id' => $session_scolaire_id,
+									'note_max' => 10],
 									['sigle' => 'UE 3',
 									'titre' => 'Biophysique',
-									'session_scolaire_id' => $session_scolaire_id],
+									'session_scolaire_id' => $session_scolaire_id,
+									'note_max' => 12],
 									['sigle' => 'UE 4',
 									'titre' => 'Biostatistiques',
-									'session_scolaire_id' => $session_scolaire_id]
+									'session_scolaire_id' => $session_scolaire_id,
+									'note_max' => 8]
 								]);
 		
 		//Définit les différents barèmes

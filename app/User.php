@@ -130,6 +130,7 @@ class User
 							->whereNull('session_scolaire.date_fin')
 							->where('utilisateur_note_epreuve.utilisateur_id', $user_id)
 							->where('epreuve.visible', true)
+							->orderBy('epreuve.date')
 							->select('epreuve.date as date_test', 
 									 'epreuve.titre as title',
 									 'ue.sigle as category',
@@ -161,6 +162,15 @@ class User
 		return $tests;
 	}
 	
+	public static function getGroupingsWithMark($user_id = null)
+	{
+		if($user_id == null)
+			$user_id = self::id();
+		
+		//regroupements d'épreuves classées
+		
+		return $tests;
+	}
 	
 	public static function nbResultsNotRead($user_id = null)
 	{

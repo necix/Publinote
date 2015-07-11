@@ -92,12 +92,18 @@ class EpreuveSeeder extends Seeder
 			$nb_etudiants = count($etudiants);
 			$nb_qcm_epreuve = DB::table('correction_qcm')->where('epreuve_id', $epreuve_id)->count();
 			
+			//note max de l'ue
+			$note_max_ue = DB::table('epreuve')->join('ue', 'epreuve.ue_id', '=', 'ue.id')
+											   ->where('epreuve.id', $epreuve_id)
+											   ->pluck('ue.note_max');
 			foreach($etudiants as $etudiant)
 			{
 				if( rand(1, 7) != 1 ) //1 chance sur 8 d'être absent à l'épreuve
 				{
-					$note_reelle = rand(0, 2000)/100;
-					$note_ajustee = sqrt(($note_reelle/20))*20;
+					$note_base = rand(0,1000)/1000;
+					$note_reelle = $note_base*$note_max_ue;
+					$note_ajustee = sqrt($note_base)*$note_max_ue;
+					
 					//note et classement
 					DB::table('utilisateur_note_epreuve')->insert(['utilisateur_id' => $etudiant->id,
 													   'epreuve_id' => $epreuve_id,

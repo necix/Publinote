@@ -28,7 +28,8 @@ class RegroupementSeeder extends Seeder
 		{
 			$epreuve_id = DB::table('epreuve')->offset($i)->pluck('id');
 			DB::table('regroupement_epreuve')->insert(['regroupement_id' => $regroupement_courrant_id,
-													   'epreuve_id' => $epreuve_id]);
+													   'epreuve_id' => $epreuve_id,
+													   'coefficient' => 20]);
 		}
 		
 		//notes par étudiant
@@ -36,12 +37,13 @@ class RegroupementSeeder extends Seeder
 			$nb_etudiants = count($etudiants);
 			foreach($etudiants as $etudiant)
 			{
-					$note = rand(0, 2000)/100;
+					$note_max = DB::table('regroupement_epreuve')->where('regroupement_id', $regroupement_courrant_id)->sum('coefficient');
+					$note_totale = rand(0, 2000)/2000*$note_max;
 					//note et classement
 					DB::table('utilisateur_note_regroupement')->insert(['utilisateur_id' => $etudiant->id,
 													   'regroupement_id' => $regroupement_courrant_id,
 													   'classement' => rand(1, $nb_etudiants),
-													   'note_totale' => $note]);
+													   'note_totale' => $note_totale]);
 			}	
 			
 		//statistiques générales du regroupement
