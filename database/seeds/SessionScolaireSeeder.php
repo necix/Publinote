@@ -32,6 +32,9 @@ class SessionScolaireSeeder extends Seeder
 									['sigle' => 'UE 3',
 									'titre' => 'Biophysique',
 									'session_scolaire_id' => $session_scolaire_id],
+									['sigle' => 'UE 4',
+									'titre' => 'Biostatistiques',
+									'session_scolaire_id' => $session_scolaire_id]
 								]);
 		
 		//Définit les différents barèmes

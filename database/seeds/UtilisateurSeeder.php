@@ -15,6 +15,12 @@ class UtilisateurSeeder extends Seeder
 		 *Crée des utilisateurs fictifs.
 		 *
 		 */
+		 
+		$nb_admin = 3;
+		$nb_tutor = 10;
+		$nb_student_classic = 90;
+		$nb_student_essa = 10;
+		
 		
 		//on vide toutes les tables  associées aux utilisateurs
 		DB::table('utilisateur')->truncate();
@@ -22,8 +28,8 @@ class UtilisateurSeeder extends Seeder
 		DB::table('etiquette')->truncate();	
 		DB::table('profil_particulier_etudiant')->truncate();	
 		
-		//création de 3 admin
-		for($i = 1; $i < 4; $i++)
+		//création des admin
+		for($i = 1; $i <= $nb_admin; $i++)
 		{
 			$id = 11501000+$i;
 			DB::table('utilisateur')->insert(['id' => $id,
@@ -32,9 +38,9 @@ class UtilisateurSeeder extends Seeder
 											  'statut' => 'admin']);
 		}
 		
-		//création de 20 tuteurs
+		//création des tuteurs
 
-		for($i = 1; $i < 21; $i++)
+		for($i = 1; $i <= $nb_tutor; $i++)
 		{
 			$id = 11502000+$i;
 			DB::table('utilisateur')->insert(['id' => $id,
@@ -53,9 +59,9 @@ class UtilisateurSeeder extends Seeder
 												 'ue_id' =>$ue_affectee_id]);
 		}
 
-		//création de 100 étudiants
-			//90 classiques
-		for($i = 1; $i < 91; $i++)
+		//création des étudiants
+			//étudiants classiques
+		for($i = 1; $i <= $nb_student_classic; $i++)
 		{
 			$id = 11503000+$i;
 			DB::table('utilisateur')->insert(['id' => $id,
@@ -67,15 +73,15 @@ class UtilisateurSeeder extends Seeder
 											'numero' => 1000 + $i,
 											'date_attribution' => time()]);
 		}
-			//10 santards
+			//étudiants santards
 			
 				//création du profil santard
 		DB::table('profil_particulier_etudiant')->insert(['titre' => 'ESSA', 'mode_calcul' => 'santard']);
 		$profil_santard_id = DB::table('profil_particulier_etudiant')->where('titre', 'ESSA')->pluck('id');
 		
-		for($i = 1; $i < 11; $i++)
+		for($i = 1; $i <= $nb_student_essa; $i++)
 		{
-			$id = 11504000+$i;
+			$id = 11508000+$i;
 			DB::table('utilisateur')->insert(['id' => $id,
 											  'nom' => 'Santard'.$i,
 											  'prenom' => 'Groconar'.$i,
@@ -83,7 +89,7 @@ class UtilisateurSeeder extends Seeder
 											  'statut' => 'student',
 											  'scolarite' => rand(1,2)]);
 			DB::table('etiquette')->insert(['utilisateur_id' => $id,
-											'numero' => 2000 + $i,
+											'numero' => 5000 + $i,
 											'date_attribution' => time()]);
 		}
     }

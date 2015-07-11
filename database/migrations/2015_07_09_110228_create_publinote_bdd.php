@@ -84,18 +84,19 @@ class CreatePublinoteBdd extends Migration
 		//table utilisateur_note_epreuve
         Schema::dropIfExists('utilisateur_note_epreuve');
 		Schema::create('utilisateur_note_epreuve', function(Blueprint $table) {
-			$table->mediumInteger('utilisateur_id')->references('id')->on('utilisateur');
+			$table->integer('utilisateur_id')->references('id')->on('utilisateur');
 			$table->mediumInteger('epreuve_id')->references('id')->on('epreuve');
 			$table->primary(['utilisateur_id', 'epreuve_id']);
 			$table->smallInteger('classement')->unsigned();
 			$table->float('note_reelle');
 			$table->float('note_ajustee')->nullable();
+			$table->boolean('lu')->default(false);
 		});
 		
 		//table grille_qcm
         Schema::dropIfExists('grille_qcm');
 		Schema::create('grille_qcm', function(Blueprint $table) {
-			$table->mediumInteger('utilisateur_id')->references('id')->on('utilisateur');
+			$table->integer('utilisateur_id')->references('id')->on('utilisateur');
 			$table->mediumInteger('epreuve_id')->references('id')->on('epreuve');
 			$table->tinyInteger('numero_QCM')->unsigned();
 			$table->primary(['utilisateur_id', 'epreuve_id', 'numero_QCM']);
@@ -124,17 +125,17 @@ class CreatePublinoteBdd extends Migration
 			$table->mediumInteger('epreuve_id')->references('id')->on('epreuve');
 			$table->tinyInteger('numero_QCM')->unsigned();
 			$table->primary(['epreuve_id', 'numero_QCM']);
-			$table->float('taux_0_discordance');
-			$table->float('taux_1_discordance');
-			$table->float('taux_2_discordance');
-			$table->float('taux_3_discordance');
-			$table->float('taux_4_discordance');
-			$table->float('taux_5_discordance');
-			$table->float('taux_item_a');
-			$table->float('taux_item_b');
-			$table->float('taux_item_c');
-			$table->float('taux_item_d');
-			$table->float('taux_item_e');
+			$table->float('taux_0_discordance')->nullable();
+			$table->float('taux_1_discordance')->nullable();
+			$table->float('taux_2_discordance')->nullable();
+			$table->float('taux_3_discordance')->nullable();
+			$table->float('taux_4_discordance')->nullable();
+			$table->float('taux_5_discordance')->nullable();
+			$table->float('taux_item_a')->nullable();
+			$table->float('taux_item_b')->nullable();
+			$table->float('taux_item_c')->nullable();
+			$table->float('taux_item_d')->nullable();
+			$table->float('taux_item_e')->nullable();
 		});
 		
 		//table bareme
@@ -199,11 +200,12 @@ class CreatePublinoteBdd extends Migration
 		//table utilisateur_note_regroupement
         Schema::dropIfExists('utilisateur_note_regroupement');
 		Schema::create('utilisateur_note_regroupement', function(Blueprint $table) {
-			$table->mediumInteger('utilisateur_id')->references('id')->on('utilisateur');
+			$table->integer('utilisateur_id')->references('id')->on('utilisateur');
 			$table->mediumInteger('regroupement_id')->references('id')->on('regroupement');
 			//$table->primary(['utilisateur_id', 'regroupement_id']);
 			$table->smallInteger('classement')->unsigned();
 			$table->float('note_totale');
+			$table->boolean('lu')->default(false);
 		});
 		//définit la clé primaire de utilisateur__etudiant
 		 //étrangement ne fonctionne pas avec la fonction primary()

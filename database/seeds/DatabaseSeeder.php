@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(SessionScolaireSeeder::class);
         $this->call(UtilisateurSeeder::class);
+        $this->call(EpreuveSeeder::class);
+        $this->call(RegroupementSeeder::class);
 
         Model::reguard();
     }
