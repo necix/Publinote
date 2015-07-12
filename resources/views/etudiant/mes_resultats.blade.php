@@ -35,13 +35,14 @@ Mes résultats
 			<th>  </th>
 		</thead>
 		@foreach($tests_with_mark as $test)
-		<tr>
+		<tr class="test_line"  test_id='{{ $test->id }}'>
+			<hidden class="id"></hidden>
 			<td>{{ date('j/m/Y', $test->date_test) }}</td>
 			<td>{{ $test->title }}</td>
 			<td>{{ $test->category }}</td>
 			<td>{{ $test->rank }}/{{ $test->participants }}</td> 
 			<td>{{ $test->read }} </td>
-			<td>{{ $test->id }}</td>
+			<td></td>
 		</tr>
 		@endforeach
 		
@@ -83,14 +84,42 @@ Mes résultats
 		@endforeach
 	</table>
 	
-	<div id="panel_epreuve">
+	<div id="panel_epreuve" class="panel panel-info">
+		Cliquez sur une épreuve pour afficher plus de détails.
 	</div>
 	
 <script>
 	$(function(){
-		$("#panel_epreuve").load("{{ url('/volet_epreuve') }}", { 
-							test : 2,
-						});
+		$('.test_line').each(function(){
+							$(this).click(function(){ 
+																$("#panel_epreuve").slideUp();
+																$.ajax({
+																   url : '{{ url("/volet_epreuve")}}',
+																   type : 'POST',
+																   dataType : "html",
+																   data : 'test_id=' + $(this).attr('test_id'),
+																   success : function(code_html, statut){
+																	   $("#panel_epreuve").html(code_html);
+																   },
+
+																   error : function(resultat, statut, erreur){
+																		$("#panel_epreuve").html("<p>Erreur à la récupération des résultats, veuillez vérifer votre connexion. </p>")
+																   },
+
+																   complete : function(resultat, statut){
+																	$("#panel_epreuve").slideDown();
+																   }
+
+																	});
+   
+													});
+														// $("#panel_epreuve").fadeOut();
+														// $("#panel_epreuve").load("{{ url('/volet_epreuve') }}", 
+																				// {test : $(this).attr('test_id') }
+																				// ); 
+															
+														// $("#panel_epreuve").fadeIn();
+							});
 	})
 </script>
 @stop

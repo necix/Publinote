@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests;
+use App\Http\Requests\PanelRequest;
 use App\Http\Controllers\Controller;
 use Session;
 
@@ -43,12 +44,12 @@ class StudentController extends Controller
 		return 'e';
 	}
 	
-	public function testPanel(Request $r)
+	public function testPanel(PanelRequest $r)
 	{
 		if(!$r->ajax())
 			abort(403);
 			
 		return view('etudiant.ajax.volet_epreuve')
-								->withTest(User::getTest($r->test));
+								->withTest(User::getTest($r->test_id));
 	}
 }
