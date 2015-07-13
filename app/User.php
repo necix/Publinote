@@ -265,7 +265,11 @@ class User
 		if($user_id == null)
 			$user_id = self::id();
 		
-
+		DB::table('utilisateur_note_regroupement')
+					->where('utilisateur_id', $user_id)
+					->where('regroupement_id', $grouping_id)
+					->update(['lu'=>true]);
+					
 		return DB::table('regroupement')
 								->join('utilisateur_note_regroupement', 'regroupement.id', '=', 'utilisateur_note_regroupement.regroupement_id')
 								->join('statistiques_regroupement', 'regroupement.id', '=', 'statistiques_regroupement.regroupement_id')
@@ -277,7 +281,7 @@ class User
 										 'utilisateur_note_regroupement.classement as rank',
 										 'statistiques_regroupement.nb_participants as participants',
 										 'regroupement.id as id')
-								->get();
+								->first();
 	}	
 	
 	public static function getGrid($epreuve_id, $user_id = null)

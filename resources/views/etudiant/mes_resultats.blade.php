@@ -32,7 +32,6 @@ Mes résultats
 			<th> Catégorie </th>
 			<th> Classement </th>
 			<th> Lu ? </th>
-			<th>  </th>
 		</thead>
 		@foreach($tests_with_mark as $test)
 		<tr class="test_grouping_line"  test_grouping_type='test' test_grouping_id='{{ $test->id }}'>
@@ -41,7 +40,7 @@ Mes résultats
 			<td>{{ $test->category }}</td>
 			<td>{{ $test->rank }}/{{ $test->participants }}</td> 
 			<td>{{ $test->read }} </td>
-			<td></td>
+
 		</tr>
 		@endforeach
 		
@@ -52,7 +51,6 @@ Mes résultats
 			<td>{{ $test->category }}</td>
 			<td>En attente</td> 
 			<td></td>
-			<td>{{ $test->id }}</td>
 		</tr>
 		@endforeach
 	</table>
@@ -65,7 +63,6 @@ Mes résultats
 			<th> Catégorie </th>
 			<th> Classement </th>
 			<th> Lu ? </th>
-			<th>  </th>
 		</thead>
 		@foreach($groupings as $grouping)
 		<tr class="test_grouping_line"  test_grouping_type='grouping' test_grouping_id='{{ $grouping->id }}' >
@@ -78,7 +75,7 @@ Mes résultats
 			</td>
 			<td>{{ $grouping->rank }}/{{ $grouping->participants }}</td> 
 			<td>{{ $grouping->read }} </td>
-			<td>{{ $grouping->id }}</td>
+
 		</tr>
 		@endforeach
 	</table>

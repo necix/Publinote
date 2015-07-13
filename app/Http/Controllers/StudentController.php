@@ -60,7 +60,7 @@ class StudentController extends Controller
 
 		else if($r->test_grouping_type == 'grouping')	
 				return view('etudiant.ajax.volet_groupement')
-										->withTest(User::getGroupingWithMark($r->test_grouping_id));										
+										->withGrouping(User::getGroupingWithMark($r->test_grouping_id));										
 	}
 	
 	public function show($id)
