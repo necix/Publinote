@@ -26,7 +26,7 @@
 	<body>
 		
 		{{-- Mettre la barre de navigation à partir d'ici. Y insérer les variables ci-dessous au bon endroit ;) --}}
-		
+		<a href="{{ url('/') }}"> Accueil </a>
 		{{$nb_results_not_read}}
 		{{strtoupper(substr($first_name, 0, 1).'. '.$last_name)}}
 		<a href="{{ url('/parametres') }}">Parametres</a>

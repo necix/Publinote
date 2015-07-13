@@ -230,7 +230,7 @@ class User
 							->where('utilisateur_note_epreuve.utilisateur_id', $user_id)
 							->select('epreuve.titre as title',
 									 'ue.sigle as category_sigle',
-									 'ue.titre as category_titre',
+									 'ue.titre as category_title',
 									 'utilisateur_note_epreuve.classement as rank',
 									 'utilisateur_note_epreuve.note_reelle as mark_real',
 									 'utilisateur_note_epreuve.note_ajustee as mark_ajusted',
@@ -279,4 +279,56 @@ class User
 										 'regroupement.id as id')
 								->get();
 	}	
+	
+	public static function getGrid($epreuve_id, $user_id = null)
+	{
+		if($user_id == null)
+			$user_id = self::id();
+		
+		if(!Test::exists($epreuve_id))
+			throw new Exception('Epreuve inexistante');
+		
+		if(!Test::isVisible($epreuve_id))
+			throw new Exception('Epreuve inaccessible');	
+	
+		return DB::table('correction_qcm')->join('grille_qcm', function($join)
+													{
+														$join->on('correction_qcm.numero_qcm', '=', 'grille_qcm.numero_qcm')
+															 ->on('correction_qcm.epreuve_id', '=', 'grille_qcm.epreuve_id');
+															 })	
+											->join('utilisateur_note_grille_qcm', function($join)
+													{
+														$join->on('correction_qcm.numero_qcm', '=', 'utilisateur_note_grille_qcm.numero_qcm')
+															 ->on('correction_qcm.epreuve_id', '=', 'utilisateur_note_grille_qcm.epreuve_id');	 
+													})
+										  ->join('bareme', 'correction_qcm.bareme_id', '=', 'bareme.id')
+										  ->where('grille_qcm.utilisateur_id', $user_id)
+										 ->where('utilisateur_note_grille_qcm.utilisateur_id', $user_id)
+										 ->where('correction_qcm.epreuve_id', $epreuve_id)
+										  ->orderBy('correction_qcm.numero_qcm')
+										  ->select('correction_qcm.numero_qcm as numero',
+												   'correction_qcm.annule as annule',
+												   'bareme.id as bareme_id',
+												   'bareme.titre as bareme_titre',
+												   'bareme.0_discordance as zero_discordance',
+												   'bareme.1_discordance as one_discordance',
+												   'bareme.2_discordance as two_discordance',
+												   'bareme.3_discordance as three_discordance',
+												   'bareme.4_discordance as four_discordance',
+												   'bareme.5_discordance as five_discordance',
+												   'utilisateur_note_grille_qcm.nb_discordances as nb_discordances',
+												   'grille_qcm.item_a as grille_item_a',
+												   'grille_qcm.item_b as grille_item_b',
+												   'grille_qcm.item_c as grille_item_c',
+												   'grille_qcm.item_d as grille_item_d',
+												   'grille_qcm.item_e as grille_item_e',
+												   'correction_qcm.item_a as correction_item_a',
+												   'correction_qcm.item_b as correction_item_b',
+												   'correction_qcm.item_c as correction_item_c',
+												   'correction_qcm.item_d as correction_item_d',
+												   'correction_qcm.item_e as correction_item_e')
+										  ->get();
+	}
+	
+
 }

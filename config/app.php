@@ -197,7 +197,8 @@ return [
 		'HTML'     	=> Collective\Html\HtmlFacade::class,
 		'Form' 		=> Collective\Html\FormFacade::class,
 		'Cas' 		=> Xavrsl\Cas\Facades\Cas::class,
-		'Debugbar' => Barryvdh\Debugbar\Facade::class,
+		'Debugbar'  => Barryvdh\Debugbar\Facade::class,
+		'Test'	    => App\Test::class,
 
     ],
 

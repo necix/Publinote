@@ -19,7 +19,7 @@ Route::get('/inconnu', function(){ return view('inconnu'); });
 
 //espace étudiant
 Route::get('/mes_resultats', 'StudentController@index');
-Route::get('/epreuve/{n}', 'StudentController@show($n)');
+Route::get('/epreuve/{n}', 'StudentController@show')->where('n', '[0-9]+');
 Route::get('/parametres', 'StudentController@getParams');
 Route::post('/parametres', 'StudentController@postParams');
 

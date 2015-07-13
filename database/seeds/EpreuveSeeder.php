@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Test;
 
 class EpreuveSeeder extends Seeder
 {
@@ -19,6 +20,7 @@ class EpreuveSeeder extends Seeder
 		DB::table('statistiques_epreuve')->truncate();
 		DB::table('utilisateur_note_epreuve')->truncate();
 		DB::table('grille_qcm')->truncate();
+		DB::table('utilisateur_note_grille_qcm')->truncate();
 		
 		$session_scolaire_courrante_id = DB::table('session_scolaire')->whereNull('date_fin')->pluck('id');
 		
@@ -50,18 +52,18 @@ class EpreuveSeeder extends Seeder
 				$bareme_id = DB::table('bareme')->offset(rand(0, $nb_baremes-1))->pluck('id');
 				
 				//réponse aux items
-				$item_a = (rand(1,100) != 1)? rand(0,1) : null; //1 chance sur 100 que l'item soit annulé
-				$item_b = (rand(1,100) != 1)? rand(0,1) : null; //1 chance sur 100 que l'item soit annulé
-				$item_c = (rand(1,100) != 1)? rand(0,1) : null; //1 chance sur 100 que l'item soit annulé
-				$item_d = (rand(1,100) != 1)? rand(0,1) : null; //1 chance sur 100 que l'item soit annulé
-				$item_e = (rand(1,100) != 1)? rand(0,1) : null; //1 chance sur 100 que l'item soit annulé
+				$item_a = (rand(1,100) != 1)? rand(0,1) : 2; //1 chance sur 100 que l'item soit annulé = mis en double
+				$item_b = (rand(1,100) != 1)? rand(0,1) : 2; //1 chance sur 100 que l'item soit annulé
+				$item_c = (rand(1,100) != 1)? rand(0,1) : 2; //1 chance sur 100 que l'item soit annulé
+				$item_d = (rand(1,100) != 1)? rand(0,1) : 2; //1 chance sur 100 que l'item soit annulé
+				$item_e = (rand(1,100) != 1)? rand(0,1) : 2; //1 chance sur 100 que l'item soit annulé
 				
 
 				//correction QCM
 				DB::table('correction_qcm')->insert(['epreuve_id' => $epreuve_id,
 													 'numero_qcm' => $j,
 													 'bareme_id'  => $bareme_id,
-													 'annule' => (rand(1,50) != 1), //1 chance sur 50 d'annuler le QCM
+													 'annule' => (rand(1,50) == 1), //1 chance sur 50 d'annuler le QCM
 													 'item_a' => $item_a,
 													 'item_b' => $item_b,
 													 'item_c' => $item_c,
@@ -122,6 +124,23 @@ class EpreuveSeeder extends Seeder
 														 'item_c' => rand(0,1),
 														 'item_d' => rand(0,1),
 														 'item_e' => rand(0,1)]);
+						
+						//on compte les discordances
+						$user_qcm = DB::table('grille_qcm')->where('utilisateur_id', $etudiant->id)
+														   ->where('epreuve_id', $epreuve_id)
+														   ->where('numero_qcm', $k)
+														   ->first();
+														   
+						$correction_qcm = DB::table('correction_qcm')->where('epreuve_id', $epreuve_id)
+																	 ->where('numero_qcm', $k)
+																	 ->first();
+																	 
+						$nb_discordances = Test::countDiscordances($user_qcm, $correction_qcm);
+						DB::table('utilisateur_note_grille_qcm')->insert(['utilisateur_id' => $etudiant->id,
+														 'epreuve_id' => $epreuve_id,
+														 'numero_qcm' => $k,
+														 'nb_discordances' => $nb_discordances]);
+						
 					}
 				}
 			}
@@ -162,18 +181,18 @@ class EpreuveSeeder extends Seeder
 				$bareme_id = DB::table('bareme')->offset(rand(0, $nb_baremes-1))->pluck('id');
 				
 				//réponse aux items
-				$item_a = (rand(1,100) != 1)? rand(0,1) : null; //1 chance sur 100 que l'item soit annulé
-				$item_b = (rand(1,100) != 1)? rand(0,1) : null; //1 chance sur 100 que l'item soit annulé
-				$item_c = (rand(1,100) != 1)? rand(0,1) : null; //1 chance sur 100 que l'item soit annulé
-				$item_d = (rand(1,100) != 1)? rand(0,1) : null; //1 chance sur 100 que l'item soit annulé
-				$item_e = (rand(1,100) != 1)? rand(0,1) : null; //1 chance sur 100 que l'item soit annulé
+				$item_a = (rand(1,100) != 1)? rand(0,1) : 2; //1 chance sur 100 que l'item soit annulé
+				$item_b = (rand(1,100) != 1)? rand(0,1) : 2; //1 chance sur 100 que l'item soit annulé
+				$item_c = (rand(1,100) != 1)? rand(0,1) : 2; //1 chance sur 100 que l'item soit annulé
+				$item_d = (rand(1,100) != 1)? rand(0,1) : 2; //1 chance sur 100 que l'item soit annulé
+				$item_e = (rand(1,100) != 1)? rand(0,1) : 2; //1 chance sur 100 que l'item soit annulé
 				
 
 				//correction QCM
 				DB::table('correction_qcm')->insert(['epreuve_id' => $epreuve_id,
 													 'numero_qcm' => $j,
 													 'bareme_id'  => $bareme_id,
-													 'annule' => (rand(1,50) != 1), //1 chance sur 50 d'annuler le QCM
+													 'annule' => (rand(1,50) == 1), //1 chance sur 50 d'annuler le QCM
 													 'item_a' => $item_a,
 													 'item_b' => $item_b,
 													 'item_c' => $item_c,

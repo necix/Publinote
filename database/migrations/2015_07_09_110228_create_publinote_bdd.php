@@ -101,12 +101,24 @@ class CreatePublinoteBdd extends Migration
 			$table->mediumInteger('epreuve_id')->references('id')->on('epreuve');
 			$table->tinyInteger('numero_QCM')->unsigned();
 			$table->primary(['utilisateur_id', 'epreuve_id', 'numero_QCM']);
-			$table->boolean('item_a')->default(false);
-			$table->boolean('item_b')->default(false);
-			$table->boolean('item_c')->default(false);
-			$table->boolean('item_d')->default(false);
-			$table->boolean('item_e')->default(false);
+			$table->tinyInteger('item_a')->default(0);
+			$table->tinyInteger('item_b')->default(0);
+			$table->tinyInteger('item_c')->default(0);
+			$table->tinyInteger('item_d')->default(0);
+			$table->tinyInteger('item_e')->default(0);
 		});
+		
+		Schema::dropIfExists('utilisateur_note_grille_qcm');
+		Schema::create('utilisateur_note_grille_qcm', function(Blueprint $table) {
+			$table->integer('utilisateur_id')->references('id')->on('utilisateur');
+			$table->mediumInteger('epreuve_id')->references('id')->on('epreuve');
+			$table->tinyInteger('numero_QCM')->unsigned();
+			//$table->primary(['utilisateur_id', 'epreuve_id', 'numero_QCM']);
+			$table->tinyInteger('nb_discordances');
+		});
+		//définit la clé primaire de utilisateur_note_grille_qcm
+		 //étrangement ne fonctionne pas avec la fonction primary()
+		 DB::statement("ALTER TABLE `utilisateur_note_grille_qcm` ADD PRIMARY KEY(`utilisateur_id`, `epreuve_id`, `numero_qcm`)");
 		
 		//table statistiques_epreuve
         Schema::dropIfExists('statistiques_epreuve');
@@ -160,11 +172,11 @@ class CreatePublinoteBdd extends Migration
 			$table->primary(['epreuve_id', 'numero_QCM']);
 			$table->tinyInteger('bareme_id')->refenreces('id')->on('bareme');
 			$table->boolean('annule')->default(false);
-			$table->boolean('item_a')->nullable();
-			$table->boolean('item_b')->nullable();
-			$table->boolean('item_c')->nullable();
-			$table->boolean('item_d')->nullable();
-			$table->boolean('item_e')->nullable();
+			$table->tinyInteger('item_a');
+			$table->tinyInteger('item_b');
+			$table->tinyInteger('item_c');
+			$table->tinyInteger('item_d');
+			$table->tinyInteger('item_e');
 			$table->integer('date_modif');
 		});
 		
@@ -209,7 +221,7 @@ class CreatePublinoteBdd extends Migration
 			$table->float('note_totale');
 			$table->boolean('lu')->default(false);
 		});
-		//définit la clé primaire de utilisateur__etudiant
+		//définit la clé primaire de utilisateur_note_regroupement
 		 //étrangement ne fonctionne pas avec la fonction primary()
 		 DB::statement("ALTER TABLE `utilisateur_note_regroupement` ADD PRIMARY KEY(`utilisateur_id`, `regroupement_id`)");
 		

@@ -1,6 +1,6 @@
 {{ $test->title }} <br />
 {{ $test->category_sigle }}:
-{{ $test->category_titre }}<br/>
+{{ $test->category_title }}<br/>
 {{ $test->rank }}/
 {{ $test->participants }}<br />
 {{ $test->mark_real }} / {{ $test->mark_max }}<br/>

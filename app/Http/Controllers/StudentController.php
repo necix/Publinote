@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Test;
 use App\Http\Requests;
 use App\Http\Requests\PanelRequest;
 use App\Http\Controllers\Controller;
@@ -60,5 +61,28 @@ class StudentController extends Controller
 		else if($r->test_grouping_type == 'grouping')	
 				return view('etudiant.ajax.volet_groupement')
 										->withTest(User::getGroupingWithMark($r->test_grouping_id));										
+	}
+	
+	public function show($id)
+	{
+		//controle que l'épreuve existe
+		if(!Test::exists($id))
+			return redirect('/');
+			
+		//contrôle que l'épreuve est visible
+		if(!Test::isVisible($id))
+			return redirect('/');
+			
+		//demande si l'épreuve est corrigée
+		$is_corrected = Test::isCorrected($id);
+		
+		//appelle la vue
+		return view('etudiant.epreuve')
+				->with(['nb_results_not_read' => User::nbResultsNotRead(),
+						'first_name' => User::firstName(),
+						'last_name' => User::lastName(),
+						'test' => ($is_corrected)? User::getTestWithMark($id) : User::getTestWithoutMark($id),
+						'is_corrected' => $is_corrected,
+						'qcms' => User::getGrid($id) ]);
 	}
 }
