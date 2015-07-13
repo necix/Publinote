@@ -48,8 +48,17 @@ class StudentController extends Controller
 	{
 		if(!$r->ajax())
 			abort(403);
-			
-		return view('etudiant.ajax.volet_epreuve')
-								->withTest(User::getTest($r->test_id));
+	
+		else if($r->test_grouping_type == 'test')	
+				return view('etudiant.ajax.volet_epreuve')
+										->withTest(User::getTestWithMark($r->test_grouping_id));
+
+		else if($r->test_grouping_type == 'test_pending')	
+				return view('etudiant.ajax.volet_epreuve_en_attente')
+										->withTest(User::getTestWithoutMark($r->test_grouping_id));
+
+		else if($r->test_grouping_type == 'grouping')	
+				return view('etudiant.ajax.volet_groupement')
+										->withTest(User::getGroupingWithMark($r->test_grouping_id));										
 	}
 }

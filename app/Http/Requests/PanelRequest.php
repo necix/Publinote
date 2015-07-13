@@ -24,7 +24,8 @@ class PanelRequest extends Request
      */
     public function rules()
     {
-        return ['test_id' => 'required|numeric'
+        return ['test_grouping_id' => 'required|numeric',
+				'test_grouping_type' => 'required'
             //
         ];
     }

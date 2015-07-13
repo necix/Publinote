@@ -35,8 +35,7 @@ Mes résultats
 			<th>  </th>
 		</thead>
 		@foreach($tests_with_mark as $test)
-		<tr class="test_line"  test_id='{{ $test->id }}'>
-			<hidden class="id"></hidden>
+		<tr class="test_grouping_line"  test_grouping_type='test' test_grouping_id='{{ $test->id }}'>
 			<td>{{ date('j/m/Y', $test->date_test) }}</td>
 			<td>{{ $test->title }}</td>
 			<td>{{ $test->category }}</td>
@@ -47,7 +46,7 @@ Mes résultats
 		@endforeach
 		
 		@foreach($tests_without_mark as $test)
-		<tr>
+		<tr class="test_grouping_line"  test_grouping_type='test_pending' test_grouping_id='{{ $test->id }}' >
 			<td>{{ date('j/m/Y', $test->date_test) }}</td>
 			<td>{{ $test->title }}</td>
 			<td>{{ $test->category }}</td>
@@ -69,7 +68,7 @@ Mes résultats
 			<th>  </th>
 		</thead>
 		@foreach($groupings as $grouping)
-		<tr >
+		<tr class="test_grouping_line"  test_grouping_type='grouping' test_grouping_id='{{ $grouping->id }}' >
 			<td>{{ date('j/m/Y', $grouping->date_grouping) }}</td>
 			<td>{{ $grouping->title }}</td>
 			<td>
@@ -90,14 +89,14 @@ Mes résultats
 	
 <script>
 	$(function(){
-		$('.test_line').each(function(){
+		$('.test_grouping_line').each(function(){
 							$(this).click(function(){ 
 																$("#panel_epreuve").slideUp();
 																$.ajax({
 																   url : '{{ url("/volet_epreuve")}}',
 																   type : 'POST',
 																   dataType : "html",
-																   data : 'test_id=' + $(this).attr('test_id'),
+																   data : 'test_grouping_type=' + $(this).attr('test_grouping_type') + '&test_grouping_id=' + $(this).attr('test_grouping_id'),
 																   success : function(code_html, statut){
 																	   $("#panel_epreuve").html(code_html);
 																   },
@@ -113,12 +112,6 @@ Mes résultats
 																	});
    
 													});
-														// $("#panel_epreuve").fadeOut();
-														// $("#panel_epreuve").load("{{ url('/volet_epreuve') }}", 
-																				// {test : $(this).attr('test_id') }
-																				// ); 
-															
-														// $("#panel_epreuve").fadeIn();
 							});
 	})
 </script>

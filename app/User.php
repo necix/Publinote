@@ -212,7 +212,7 @@ class User
 		return $nb_tests_not_read + $nb_groupings_not_read;
 	}
 	
-	public static function getTest($test_id, $user_id = null)
+	public static function getTestWithMark($test_id, $user_id = null)
 	{
 		if($user_id == null)
 			$user_id = self::id();
@@ -238,6 +238,45 @@ class User
 									 'ue.note_max as mark_max',
 									 'epreuve.id as id')
 							->first();
-	}		
+	}	
 
+	public static function getTestWithoutMark($test_id, $user_id = null)
+	{
+		if($user_id == null)
+			$user_id = self::id();
+		
+
+		return DB::table('epreuve')
+							->leftJoin('statistiques_epreuve', 'id', '=', 'statistiques_epreuve.epreuve_id')
+							->join('ue', 'ue_id', '=', 'ue.id')
+							->whereNull('statistiques_epreuve.min')
+							->where('epreuve.visible', true)
+							->where('epreuve.id', $test_id) 
+							->select('epreuve.date as date_test', 
+									 'epreuve.titre as title',
+									 'ue.sigle as category_sigle',
+									 'ue.titre as category_title',
+									 'epreuve.id as id')
+							->first();
+	}	
+
+	public static function getGroupingWithMark($grouping_id, $user_id = null)
+	{
+		if($user_id == null)
+			$user_id = self::id();
+		
+
+		return DB::table('regroupement')
+								->join('utilisateur_note_regroupement', 'regroupement.id', '=', 'utilisateur_note_regroupement.regroupement_id')
+								->join('statistiques_regroupement', 'regroupement.id', '=', 'statistiques_regroupement.regroupement_id')
+								->where('utilisateur_note_regroupement.utilisateur_id', $user_id)
+								->where('regroupement.id', $grouping_id)
+								->select('regroupement.date as date_grouping', 
+										 'regroupement.titre as title',
+										 'utilisateur_note_regroupement.lu as read',
+										 'utilisateur_note_regroupement.classement as rank',
+										 'statistiques_regroupement.nb_participants as participants',
+										 'regroupement.id as id')
+								->get();
+	}	
 }
