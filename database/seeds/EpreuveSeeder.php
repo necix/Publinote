@@ -43,7 +43,9 @@ class EpreuveSeeder extends Seeder
 														     'titre' => 'Epreuve ' . $i,
 														     'date'  => $date_epreuve,
 														     'visible' => true ]);
-							
+															 
+			$array_correction_qcm_to_insert = null;
+			$array_statistiques_qcm_to_insert = null;
 			//15 QCM par epreuve
 			for($j = 1; $j <= $nb_qcm_par_epreuve; $j++)
 			{					
@@ -60,7 +62,7 @@ class EpreuveSeeder extends Seeder
 				
 
 				//correction QCM
-				DB::table('correction_qcm')->insert(['epreuve_id' => $epreuve_id,
+				$array_correction_qcm_to_insert[] = ['epreuve_id' => $epreuve_id,
 													 'numero_qcm' => $j,
 													 'bareme_id'  => $bareme_id,
 													 'annule' => (rand(1,50) == 1), //1 chance sur 50 d'annuler le QCM
@@ -70,25 +72,29 @@ class EpreuveSeeder extends Seeder
 													 'item_d' => $item_d,
 													 'item_e' => $item_e,
 													 'date_modif' => $date_epreuve + 3600*24 //corretion donnée 1 jour après l'épreuve
-													 ]);
+													 ];
 				
 				//statistiques aléatoires par qcm;
 				$ecart = (rand(0,400)-200)/1000;
-				DB::table('statistiques_qcm')->insert(['epreuve_id' => $epreuve_id,
-													 'numero_qcm' => $j,
-													 'taux_item_a' => pow(rand(0, 1000)/1000, 1/5),
-													 'taux_item_b' => pow(rand(0, 1000)/1000, 1/5),
-													 'taux_item_c' => pow(rand(0, 1000)/1000, 1/5),
-													 'taux_item_d' => pow(rand(0, 1000)/1000, 1/5),
-													 'taux_item_e' => pow(rand(0, 1000)/1000, 1/5),
-													 'taux_0_discordance' => 0.20 + $ecart,
-													 'taux_1_discordance' => 0.20 + $ecart * 0.5,
-													 'taux_2_discordance' => 0.20 + $ecart * 0.1 ,
-													 'taux_3_discordance' => 0.20 - $ecart * 0.1,
-													 'taux_4_discordance' => 0.20 - $ecart * 0.5,
-													 'taux_5_discordance' => 0.20 - $ecart,
-													]);
+				$array_statistiques_qcm_to_insert[] = ['epreuve_id' => $epreuve_id,
+													  'numero_qcm' => $j,
+												 	  'taux_item_a' => pow(rand(0, 1000)/1000, 1/5),
+												 	  'taux_item_b' => pow(rand(0, 1000)/1000, 1/5),
+													  'taux_item_c' => pow(rand(0, 1000)/1000, 1/5),
+													  'taux_item_d' => pow(rand(0, 1000)/1000, 1/5),
+													  'taux_item_e' => pow(rand(0, 1000)/1000, 1/5),
+													  'taux_0_discordance' => 0.20 + $ecart,
+													  'taux_1_discordance' => 0.20 + $ecart * 0.5,
+													  'taux_2_discordance' => 0.20 + $ecart * 0.1 ,
+													  'taux_3_discordance' => 0.20 - $ecart * 0.1,
+													  'taux_4_discordance' => 0.20 - $ecart * 0.5,
+													  'taux_5_discordance' => 0.20 - $ecart,
+													  ]; 
 			}	
+			DB::table('correction_qcm')->insert($array_correction_qcm_to_insert);
+			DB::table('statistiques_qcm')->insert($array_statistiques_qcm_to_insert);
+			
+			
 			//notes et classements individuels + grille QCM,
 			$etudiants = DB::table('utilisateur')->where('statut','=','student')->get();
 			$nb_etudiants = count($etudiants);
@@ -98,6 +104,9 @@ class EpreuveSeeder extends Seeder
 			$note_max_ue = DB::table('epreuve')->join('ue', 'epreuve.ue_id', '=', 'ue.id')
 											   ->where('epreuve.id', $epreuve_id)
 											   ->pluck('ue.note_max');
+											   
+			$array_utilisateur_note_epreuve_to_insert = null;
+			$array_nb_discordances_to_insert = null;
 			foreach($etudiants as $etudiant)
 			{
 				if( rand(1, 7) != 1 ) //1 chance sur 8 d'être absent à l'épreuve
@@ -107,11 +116,11 @@ class EpreuveSeeder extends Seeder
 					$note_ajustee = sqrt($note_base)*$note_max_ue;
 					
 					//note et classement
-					DB::table('utilisateur_note_epreuve')->insert(['utilisateur_id' => $etudiant->id,
-													   'epreuve_id' => $epreuve_id,
-													   'classement' => rand(1, $nb_etudiants),
-													   'note_reelle' => $note_reelle,
-													   'note_ajustee' => $note_ajustee]);
+					$array_utilisateur_note_epreuve_to_insert[] = ['utilisateur_id' => $etudiant->id,
+																   'epreuve_id' => $epreuve_id,
+																   'classement' => rand(1, $nb_etudiants),
+																   'note_reelle' => $note_reelle,
+																   'note_ajustee' => $note_ajustee];
 					
 					//grille reponse
 					for($k = 1; $k < $nb_qcm_epreuve + 1; $k++)
@@ -136,15 +145,18 @@ class EpreuveSeeder extends Seeder
 																	 ->first();
 																	 
 						$nb_discordances = Test::countDiscordances($user_qcm, $correction_qcm);
-						DB::table('utilisateur_note_grille_qcm')->insert(['utilisateur_id' => $etudiant->id,
-														 'epreuve_id' => $epreuve_id,
-														 'numero_qcm' => $k,
-														 'nb_discordances' => $nb_discordances]);
+						$array_nb_discordances_to_insert[] = ['utilisateur_id' => $etudiant->id,
+															  'epreuve_id' => $epreuve_id,
+															  'numero_qcm' => $k,
+															  'nb_discordances' => $nb_discordances];
 						
 					}
-				}
+				}	
 			}
-
+			
+			DB::table('utilisateur_note_epreuve')->insert($array_utilisateur_note_epreuve_to_insert);
+			DB::table('utilisateur_note_grille_qcm')->insert($array_nb_discordances_to_insert);
+			
 			//statistiques des épreuves
 			$nb_participants = count(DB::table('utilisateur_note_epreuve')->where('epreuve_id', $epreuve_id)->get());
 			$min = DB::table('utilisateur_note_epreuve')->where('epreuve_id', $epreuve_id)->min('note_reelle');
@@ -159,7 +171,11 @@ class EpreuveSeeder extends Seeder
 													   
 		}
 		
-		//création de 1 épreuve corrigée
+
+		
+		
+		
+		//création de 1 épreuve corrigée sans classement
 		for($i = 1; $i < 2; $i++)
 		{
 			//date de l'épreuve : on fait une épreuve par semaine
