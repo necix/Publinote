@@ -4,6 +4,8 @@ use DB;
 use Session;
 use Cas;
 use Exception;
+use Test;
+use General;
 
 class User 
 {
@@ -95,6 +97,24 @@ class User
 		throw new Exception('User not connected');
 	}
 	
+	public static function profile($user_id = null)
+	{
+		if($user_id == null)
+			$user_id = self::id();
+		
+		return DB::table('utilisateur')->where('id', $user_id)
+									   ->pluck('profil_particulier_etudiant');
+	}
+	
+	public static function scolarite($user_id = null)
+	{
+		if($user_id == null)
+			$user_id = self::id();
+		
+		return DB::table('utilisateur')->where('id', $user_id)
+									   ->pluck('scolarite');
+	}
+	
 	public static function parametersDefined($user_id = null)
 	{
 		if($user_id == null)
@@ -114,6 +134,23 @@ class User
 		else
 			return true;
 		
+	}
+	
+	public static function setParams($scolarite_id, $profil_id, $user_id = null)
+	{
+		if($user_id == null)
+			$user_id = self::id();
+		
+		//verification des paramètres
+		if(!General::profilExists($profil_id))
+			throw new Exception('Profil inexistant');
+		if(!General::scolariteExists($scolarite_id))
+			throw new Exception('Scolarité impossible');
+			
+		//insertion
+		DB::table('utilisateur')->where('id', $user_id)
+								->update(['profil_particulier_etudiant' => $profil_id,
+										  'scolarite' => $scolarite_id]);
 	}
 	
 	public static function getTestsWithMark($user_id = null)
@@ -294,8 +331,9 @@ class User
 		
 		if(!Test::isVisible($epreuve_id))
 			throw new Exception('Epreuve inaccessible');	
-	
-		return DB::table('correction_qcm')->join('grille_qcm', function($join)
+		
+		if(Test::isCorrected($epreuve_id))
+			return DB::table('correction_qcm')->join('grille_qcm', function($join)
 													{
 														$join->on('correction_qcm.numero_qcm', '=', 'grille_qcm.numero_qcm')
 															 ->on('correction_qcm.epreuve_id', '=', 'grille_qcm.epreuve_id');
@@ -326,6 +364,23 @@ class User
 												   'grille_qcm.item_c as grille_item_c',
 												   'grille_qcm.item_d as grille_item_d',
 												   'grille_qcm.item_e as grille_item_e',
+												   'correction_qcm.item_a as correction_item_a',
+												   'correction_qcm.item_b as correction_item_b',
+												   'correction_qcm.item_c as correction_item_c',
+												   'correction_qcm.item_d as correction_item_d',
+												   'correction_qcm.item_e as correction_item_e')
+										  ->get();
+		else
+			return DB::table('correction_qcm')
+										  ->join('bareme', 'correction_qcm.bareme_id', '=', 'bareme.id')
+										  //->where('grille_qcm.utilisateur_id', $user_id)
+										 //->where('utilisateur_note_grille_qcm.utilisateur_id', $user_id)
+										 ->where('correction_qcm.epreuve_id', $epreuve_id)
+										  ->orderBy('correction_qcm.numero_qcm')
+										  ->select('correction_qcm.numero_qcm as numero',
+												   'correction_qcm.annule as annule',
+												   'bareme.id as bareme_id',
+												   'bareme.titre as bareme_titre',
 												   'correction_qcm.item_a as correction_item_a',
 												   'correction_qcm.item_b as correction_item_b',
 												   'correction_qcm.item_c as correction_item_c',

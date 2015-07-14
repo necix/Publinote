@@ -18,8 +18,8 @@ class UtilisateurSeeder extends Seeder
 		 
 		$nb_admin = 3;
 		$nb_tutor = 10;
-		$nb_student_classic = 3;
-		$nb_student_essa = 1;
+		$nb_student_classic = 30;
+		$nb_student_essa = 5;
 		
 		
 		//on vide toutes les tables  associées aux utilisateurs

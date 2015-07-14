@@ -22,6 +22,7 @@ Route::get('/mes_resultats', 'StudentController@index');
 Route::get('/epreuve/{n}', 'StudentController@show')->where('n', '[0-9]+');
 Route::get('/parametres', 'StudentController@getParams');
 Route::post('/parametres', 'StudentController@postParams');
+Route::get('/aide', 'StudentController@help');
 
 Route::post('/volet_epreuve', 'StudentController@testPanel');
 

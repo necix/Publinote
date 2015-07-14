@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Test;
+use App\General;
 use App\Http\Requests;
 use App\Http\Requests\PanelRequest;
+use App\Http\Requests\StudentParamsRequest;
 use App\Http\Controllers\Controller;
 use Session;
 
@@ -37,12 +39,33 @@ class StudentController extends Controller
 	
 	public function getParams()
 	{
-		return view('etudiant.parametres');
+		return view('etudiant.parametres')
+				->with(['nb_results_not_read' => User::nbResultsNotRead(),
+						'first_name' => User::firstName(),
+						'last_name' => User::lastName(),
+						'parameters_defined' => User::parametersDefined(),
+						'user_profile' => User::profile(),
+						'profiles' => General::profils(),
+						'user_scolarite' => User::scolarite(),
+					]);
 	}
 	
 	public function postParams(StudentParamsRequest $r)
 	{
-		return 'e';
+		User::setParams($r->scolarite, $r->profil);
+		
+		Session::flash('flash_message',  'Vos paramètres ont bien été enregistrés');
+		
+		return view('etudiant.parametres')
+				->with(['nb_results_not_read' => User::nbResultsNotRead(),
+						'first_name' => User::firstName(),
+						'last_name' => User::lastName(),
+						'parameters_defined' => User::parametersDefined(),
+						'user_profile' => User::profile(),
+						'profiles' => General::profils(),
+						'user_scolarite' => User::scolarite(),
+					])
+				;
 	}
 	
 	public function testPanel(PanelRequest $r)
@@ -84,5 +107,10 @@ class StudentController extends Controller
 						'test' => ($is_corrected)? User::getTestWithMark($id) : User::getTestWithoutMark($id),
 						'is_corrected' => $is_corrected,
 						'qcms' => User::getGrid($id) ]);
+	}
+	
+	public function help()
+	{
+		return 'Page d\'aide';
 	}
 }

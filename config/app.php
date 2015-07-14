@@ -199,6 +199,7 @@ return [
 		'Cas' 		=> Xavrsl\Cas\Facades\Cas::class,
 		'Debugbar'  => Barryvdh\Debugbar\Facade::class,
 		'Test'	    => App\Test::class,
+		'General'	=> App\General::class,
 
     ],
 

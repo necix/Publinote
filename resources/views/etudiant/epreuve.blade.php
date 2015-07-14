@@ -40,8 +40,12 @@
 			@else
 			<td> {{ Test::compactQCM([ $qcm->correction_item_a, $qcm->correction_item_b, $qcm->correction_item_c, $qcm->correction_item_d, $qcm->correction_item_e ]) }}</td>
 			<td> {{ $qcm->bareme_titre}}</td>
-			<td> {{ Test::compactQCM([ $qcm->grille_item_a, $qcm->grille_item_b, $qcm->grille_item_c, $qcm->grille_item_d, $qcm->grille_item_e ]) }}</td>
-			<td>{{ Test::discordanceToNote($qcm) }}/{{$qcm->zero_discordance}}</td>
+				@if($is_corrected)
+				<td> {{ Test::compactQCM([ $qcm->grille_item_a, $qcm->grille_item_b, $qcm->grille_item_c, $qcm->grille_item_d, $qcm->grille_item_e ]) }}</td>
+				<td>{{ Test::discordanceToNote($qcm) }}/{{$qcm->zero_discordance}}</td>
+				@else
+				<td colspan="2">En attente</td>
+				@endif
 			@endif
 		</tr>
 		@endforeach
