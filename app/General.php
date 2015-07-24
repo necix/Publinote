@@ -59,4 +59,10 @@ class General
 			default : throw new Exception('Scolarité impossible');
 		}
 	}
+	
+	public static function currentSessionId()
+	{
+		return DB::table('session_scolaire')->whereNull('date_fin')
+											->pluck('id');
+	}
 }

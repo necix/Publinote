@@ -101,4 +101,28 @@ class Test
 			default : throw new Exception('nombre de discordances inconnu');
 		}
 	}
+	
+	public static function getAllTests()
+	{
+		return DB::table('epreuve')->where('epreuve.session_scolaire_id', General::currentSessionId())
+								   ->join('ue', 'epreuve.ue_id', '=', 'ue.id')
+								   ->select('epreuve.id as id',
+											'epreuve.titre as titre',
+											'epreuve.date as date',
+											'epreuve.visible as visible',
+											'ue.sigle as ue')
+								   ->get();
+	}
+	
+	public static function nbGrids($test_id)
+	{
+		return DB::table('grille_qcm')->where('epreuve_id', $test_id) //compte le nombre d'items, 5 items par qcm donc on divise par 5
+									  ->count() / 5;
+	}
+	
+	public static function nbQCMS($test_id)
+	{
+		return DB::table('correction_QCM')->where('epreuve_id', $test_id)
+										  ->count();
+	}
 }

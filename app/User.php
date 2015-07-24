@@ -388,6 +388,22 @@ class User
 												   'correction_qcm.item_e as correction_item_e')
 										  ->get();
 	}
-	
 
+	public static function getUEs($tutor_id = null)
+	{
+		//vérification de l'id de l'user
+		if($tutor_id == null)
+			$tutor_id = self::id();
+			
+		//vérif du statut
+		if(self::status() != 'tutor')
+			throw new Exception('Not a tutor');	
+		
+		//génération de la requête
+		return DB::table('utilisateur_ue')->join('utilisateur', 'utilisateur_ue.utilisateur_id', '=', 'utilisateur.id')
+										  ->join('ue', 'utilisateur_ue.ue_id', '=', 'ue.id')
+										  ->where('utilisateur_id', $tutor_id)
+										  ->select('ue.titre as ue_title')
+										  ->get();
+	}
 }
