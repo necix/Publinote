@@ -16,7 +16,7 @@ class Tutor
      */
     public function handle($request, Closure $next)
     {
-     	if(User::isConnected() && User::status() == 'tuteur')
+     	if(User::isConnected() && User::status() == 'tutor')
 			return $next($request);
 		else
 			return redirect('/');

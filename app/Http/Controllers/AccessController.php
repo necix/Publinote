@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Exception;
 
 class AccessController extends Controller
 {
@@ -15,10 +16,12 @@ class AccessController extends Controller
 		if (User::status() == 'student')
 			return redirect('/mes_resultats');
 		
-        else if (User::status() == 'tuteur')
+        else if (User::status() == 'tutor')
 			return redirect('/espace_tuteur');
 		
 		else if (User::status() == 'admin')
 			return redirect('/espace_admin');
+		else
+			throw new Exception('Profil non reconnu');
 	}
 }
