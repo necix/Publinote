@@ -35,6 +35,7 @@ class TutorController extends Controller
 											 'tutors' => Test::getTutors($epreuve_id),
 											 'qcmGrid' => Test::getQCMGrids($epreuve_id),
 											 'nbQCMs' => Test::nbQCMs($epreuve_id),
-											 'nbGrids' => Test::nbGrids($epreuve_id)]);
+											 'nbGrids' => Test::nbGrids($epreuve_id),
+											 'isTutorTest' => Test::isTutorTest(User::id(), $epreuve_id)]);
 	}
 }

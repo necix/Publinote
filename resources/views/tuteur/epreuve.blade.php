@@ -7,6 +7,14 @@
 
 @section('contenu')
 
+@if($isTutorTest == true)
+	@if($nbQCMs == 0)
+	<p><a href="{{url('/espace_tuteur/editer_correction/'.$test->id)}}">Ajouter une correction</a></p>
+	@else
+	<p><a href="{{url('/espace_tuteur/editer_correction/'.$test->id)}}">Modifier la correction</a></p>
+	@endif
+@endif
+
 <h3>Infos générales</h3>
 Titre : {{$test->titre }}<br />
 UE : {{ $test->ue }}<br />
@@ -16,7 +24,8 @@ Visibilité : @if($test->visible == 1)
 				@else
 				Masquée
 				@endif<br />
-Tuteurs de l'épreuve : @foreach($tutors as $tutor) {{$tutor->first_name.' '.$tutor->last_name}} <br />@endforeach
+<h4>Tuteurs de l'épreuve</h4>
+@foreach($tutors as $tutor) {{$tutor->first_name.' '.$tutor->last_name}} <br />@endforeach
 
 <h3>Statistiques</h3>
 @if($nbGrids == 0)

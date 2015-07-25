@@ -106,6 +106,7 @@ class Test
 	{
 		return DB::table('epreuve')->where('epreuve.session_scolaire_id', General::currentSessionId())
 								   ->join('ue', 'epreuve.ue_id', '=', 'ue.id')
+								   ->orderBy('epreuve.date')
 								   ->select('epreuve.id as id',
 											'epreuve.titre as titre',
 											'epreuve.date as date',
@@ -195,5 +196,25 @@ class Test
 										  ->select('utilisateur.nom as last_name',
 												   'utilisateur.prenom as first_name')
 										  ->get();							  
+	}
+	
+	public static function isTutorTest($tutor_id, $test_id)
+	{
+		if(!self::exists($test_id))
+			throw new Exception('Test does not exists');
+		
+		if(User::status($tutor_id) != 'tutor')
+			throw new Exception('Not a tutor');
+		
+		//récup de l'id de l'ue de l'épreuve
+		$ue_id = DB::table('epreuve')->where('id', $test_id)
+									->pluck('ue_id');
+		$nb_match = DB::table('utilisateur_ue')->where('utilisateur_id', $tutor_id)
+											   ->where('ue_id', $ue_id)
+											   ->count();
+		if($nb_match == 0)
+			return false;
+		else 
+			return true;
 	}
 }
