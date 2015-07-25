@@ -24,11 +24,13 @@ Route::get('/parametres', 'StudentController@getParams');
 Route::post('/parametres', 'StudentController@postParams');
 Route::get('/aide', 'StudentController@help');
 
-Route::post('/volet_epreuve', 'StudentController@testPanel');
+Route::post('/volet_epreuve', 'StudentController@testPanel'); //ajax
 
 //espace tuteur
 Route::get('/espace_tuteur', 'TutorController@index');
 Route::get('/espace_tuteur/epreuve/{n}', 'TutorController@show')->where('n', '[0-9]+');
+Route::get('/espace_tuteur/epreuve/editer_correction/{n}', 'TutorController@edit')->where('n', '[0-9]+');
 
+Route::post('/delete_qcm', 'TutorController@deleteQCM');
 //espace admin
 Route::get('/espace_admin', 'AdminController@index');

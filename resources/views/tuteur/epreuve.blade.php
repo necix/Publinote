@@ -9,9 +9,9 @@
 
 @if($isTutorTest == true)
 	@if($nbQCMs == 0)
-	<p><a href="{{url('/espace_tuteur/editer_correction/'.$test->id)}}">Ajouter une correction</a></p>
+	<p><a href="{{url('/espace_tuteur/epreuve/editer_correction/'.$test->id)}}">Ajouter une correction</a></p>
 	@else
-	<p><a href="{{url('/espace_tuteur/editer_correction/'.$test->id)}}">Modifier la correction</a></p>
+	<p><a href="{{url('/espace_tuteur/epreuve/editer_correction/'.$test->id)}}">Modifier la correction</a></p>
 	@endif
 @endif
 

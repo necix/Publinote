@@ -217,4 +217,26 @@ class Test
 		else 
 			return true;
 	}
+	
+	public static function getCorrection($test_id)
+	{
+		if(!self::exists($test_id))
+			throw new Exception('Test does not exists');
+			
+		return DB::table('correction_qcm') ->join('bareme', 'correction_qcm.bareme_id', '=', 'bareme.id')
+											->where('correction_qcm.epreuve_id', $test_id)
+											->orderBy('numero')
+											->select('correction_qcm.numero_qcm as numero',
+												     'correction_qcm.annule as annule',
+												     'bareme.id as bareme_id',
+												     'bareme.titre as bareme_titre',
+													 'correction_qcm.epreuve_id as epreuve_id',
+											  	     'correction_qcm.item_a as correction_item_a',
+												     'correction_qcm.item_b as correction_item_b',
+												     'correction_qcm.item_c as correction_item_c',
+												     'correction_qcm.item_d as correction_item_d',
+												     'correction_qcm.item_e as correction_item_e')
+											->get();
+		
+	}
 }

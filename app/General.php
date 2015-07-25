@@ -65,4 +65,9 @@ class General
 		return DB::table('session_scolaire')->whereNull('date_fin')
 											->pluck('id');
 	}
+	
+	public static function getBaremes()
+	{
+		return DB::table('bareme')->select('*')->get();
+	}
 }

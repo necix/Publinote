@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Test;
 use App\User;
+use App\General;
 
 class TutorController extends Controller
 {
@@ -37,5 +38,27 @@ class TutorController extends Controller
 											 'nbQCMs' => Test::nbQCMs($epreuve_id),
 											 'nbGrids' => Test::nbGrids($epreuve_id),
 											 'isTutorTest' => Test::isTutorTest(User::id(), $epreuve_id)]);
+	}
+	
+	public function edit($epreuve_id)
+	{
+		if(!Test::exists($epreuve_id))
+			return redirect('/');
+		
+		if(!Test::isTutorTest(User::id(), $epreuve_id))
+			return redirect('/');
+			
+		return view('tuteur.modifier_correction')->with(['first_name' => User::firstName(),
+														 'last_name' => User::lastName(),
+														 'corrections' => Test::getCorrection($epreuve_id),
+														 'baremes' => General::getBaremes()]);
+	}
+	
+	public function deleteQCM(Request $r)
+	{
+		if(!$r->ajax())
+			abort(403);
+		
+		return 'OK';
 	}
 }
