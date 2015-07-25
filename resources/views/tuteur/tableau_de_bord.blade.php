@@ -7,7 +7,7 @@ Tableau de bord - Tuteur
 
 @section('contenu')
 	@if(count($tests) == 0)
-			<p> Aucune �preuve disponible </p>
+			<p> Aucune épreuve disponible </p>
 	@else
 	<table class="table table-bordered table-striped table-condensed">
 		<thead>
@@ -23,7 +23,12 @@ Tableau de bord - Tuteur
 			<td>{{ date('j/m/Y', $test->date) }}</td>
 			<td>{{ $test->titre }}</td>
 			<td>{{ $test->ue }}</td>
-			<td>{{ $test->visible }}</td> 
+			<td>@if($test->visible == 1)
+				Affichée
+				@else
+				Masquée
+				@endif
+			</td> 
 			<td>{{ Test::nbQCMs($test->id) }} </td>
 			<td>{{ Test::nbGrids($test->id) }} </td>
 			<td> <a href="{{ url('/espace_tuteur/epreuve/'.$test->id) }}"> Afficher </a> </td>

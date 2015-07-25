@@ -28,6 +28,7 @@ Route::post('/volet_epreuve', 'StudentController@testPanel');
 
 //espace tuteur
 Route::get('/espace_tuteur', 'TutorController@index');
+Route::get('/espace_tuteur/epreuve/{n}', 'TutorController@show')->where('n', '[0-9]+');
 
 //espace admin
 Route::get('/espace_admin', 'AdminController@index');

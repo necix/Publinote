@@ -22,4 +22,19 @@ class TutorController extends Controller
 													 'last_name' => User::lastName(),
 													 'tests' => Test::getAllTests()]);
     }
+	
+	public function show($epreuve_id)
+	{
+		//verifie que l'épreuve existe
+		if(!Test::exists($epreuve_id))
+			return redirect('/');
+		
+		return view('tuteur.epreuve')->with(['first_name' => User::firstName(),
+											 'last_name' => User::lastName(),
+											 'test' => Test::getTest($epreuve_id),
+											 'tutors' => Test::getTutors($epreuve_id),
+											 'qcmGrid' => Test::getQCMGrids($epreuve_id),
+											 'nbQCMs' => Test::nbQCMs($epreuve_id),
+											 'nbGrids' => Test::nbGrids($epreuve_id)]);
+	}
 }
