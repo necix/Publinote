@@ -42,7 +42,8 @@ class EpreuveSeeder extends Seeder
 															 'ue_id' => $ue_affectee_id,
 														     'titre' => 'Epreuve ' . $i,
 														     'date'  => $date_epreuve,
-														     'visible' => true ]);
+														     'visible' => true, 
+															 'date_modif_correction' => time() ]);
 															 
 			$array_correction_qcm_to_insert = null;
 			$array_statistiques_qcm_to_insert = null;
@@ -167,6 +168,7 @@ class EpreuveSeeder extends Seeder
 													   'min' => $min,
 													   'max' => $max,
 													   'moy' => $moy,
+													   'date_generation' => time()+10, //pour être sur que bien postérieur à date_modif_correction de épreuve
 													  ]);
 													   
 		}
@@ -187,7 +189,8 @@ class EpreuveSeeder extends Seeder
 															 'ue_id' => $ue_affectee_id,
 														     'titre' => 'Epreuve non classée ' . $i,
 														     'date'  => $date_epreuve,
-														     'visible' => true ]);
+														     'visible' => true,
+															 'date_modif_correction' => time()+10]);
 							
 			//15 QCM par epreuve
 			for($j = 1; $j < 16; $j++)

@@ -80,6 +80,7 @@ class CreatePublinoteBdd extends Migration
 			$table->string('titre',20);
 			$table->integer('date');
 			$table->boolean('visible');
+			$table->integer('date_modif_correction')->nullable();
 		});
 		
 		//table utilisateur_note_epreuve
@@ -130,6 +131,7 @@ class CreatePublinoteBdd extends Migration
 			$table->float('max');
 			$table->float('moy');
 			$table->text('repartition_notes'); //à revoir
+			$table->integer('date_generation');
 		});
 		
 		//table statistiques_qcm
@@ -209,6 +211,7 @@ class CreatePublinoteBdd extends Migration
 			$table->float('max');
 			$table->float('moy');
 			$table->text('repartition_notes'); //à revoir
+			$table->integer('date_generation');
 		});
 		
 		//table utilisateur_note_regroupement

@@ -51,7 +51,8 @@ class RegroupementSeeder extends Seeder
 														'min' => 0,
 														'max' => 17,
 														'moy' => 8,
-														'nb_participants' => $nb_etudiants]);
+														'nb_participants' => $nb_etudiants,
+														'date_generation' => time()+11]);
 		
     }
 }
