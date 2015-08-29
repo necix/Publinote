@@ -32,39 +32,76 @@ Modification de la correction
 				<td> {{ $correction->bareme_titre }}</td>
 				<td> {{ Test::compactQCM([$correction->correction_item_a, $correction->correction_item_b, $correction->correction_item_c, $correction->correction_item_d, $correction->correction_item_e]) }} </td>
 				@endunless
-				<td> <a href="#"> Modifier </a> 
-					<div class="btn btn-warning supprimer_qcm" test_id="{{$correction->epreuve_id}}" numero_qcm="{{ $correction->numero }}"> Supprimer </div> 
+				<td> 
+				{!! Form::open(['url' => 'espace_tuteur/epreuve/supprimer_qcm/']) !!}
+					<input type="hidden" name="epreuve_id" value="{{ $epreuve_id }}" />
+					<input type="hidden" name="numero_qcm" value="{{ $correction->numero }}" />
+					{!! Form::submit('Supprimer', ['class' => 'btn btn-warning']) !!}
+				{!! Form::close() !!} 
 				</td>
 			</tr>
 		@endforeach
 		</tbody>
+	</table>
+	
+					
+					{{--Message flash qui disparait tout seul--}}
+					@if(Session::has('flash_message_qcm'))
+					<div class="col-sm-offset-3 col-sm-6" >
+						<div class="flashinfo"><div class="alert alert-success" role="alert" class="flashinfo">{{ session('flash_message_qcm') }}</div></div>
+					</div>
+					@endif
+					{!! Form::open(['url' => 'espace_tuteur/epreuve/ajouter_qcm/', 'class'=>'col-sm-offset-2 col-sm-8' ]) !!}
+						<input type="hidden" name="epreuve_id" value="{{ $epreuve_id }}" />
+						
+						<label for="numero_qcm" > Numéro : </label>
+						<input type="number" min="1" max="100" required value="{{last($corrections)->numero+1}}" name="numero_qcm" id="numero" @if(Session::has('flash_message_qcm')) autofocus @endif/> 
+						{{-- autofocus si ajout ou suppression de QCM --}}
+						
+						<label for="bareme" > Barème : </label>
+						<select name="bareme_id" id="bareme">
+							@foreach($baremes as $bareme)
+							<option value="{{ $bareme->id }}"> {{ $bareme->titre }} </option>
+							@endforeach
+						</select>
+						
+						<label for="item_a"> A : </label>
+						<select name="item_a"  id="item_a">
+							<option value="0"> Faux </option>
+							<option value="1"> Vrai </option>
+							<option value="2"> Vrai/Faux </option>
+						</select>
+						
+						<label for="item_b"> B : </label>
+						<select name="item_b" id="item_b">
+							<option value="0"> Faux </option>
+							<option value="1"> Vrai </option>
+							<option value="2"> Vrai/Faux </option>
+						</select>
+						
+						<label for="item_c"> C : </label>
+						<select name="item_c" id="item_c">
+							<option value="0"> Faux </option>
+							<option value="1"> Vrai </option>
+							<option value="2"> Vrai/Faux </option>
+						</select>
+						
+						<label for="item_d"> D : </label>
+						<select name="item_d" id="item_d">
+							<option value="0"> Faux </option>
+							<option value="1"> Vrai </option>
+							<option value="2"> Vrai/Faux </option>
+						</select>
+						
+						<label for="item_e"> E : </label>
+						<select name="item_e" id="item_e">
+							<option value="0"> Faux </option>
+							<option value="1"> Vrai </option>
+							<option value="2"> Vrai/Faux </option>
+						</select>
+						
+						<input type="checkbox" name="annule" id="annule" /> <label for="annule">Annulé</label>
+					<input type="submit" value="Ajouter">
+				{!! Form::close() !!}
 
-<script>
-	$(function(){
-		$('.supprimer_qcm').each(function(){
-							$(this).click(function(){ 
-																
-																$.ajax({
-																   url : '{{ url("/delete_qcm")}}',
-																   type : 'POST',
-																   dataType : "html",
-																   data : "",
-																   success : function(code_html, statut){
-																	  
-																   },
-
-																   error : function(resultat, statut, erreur){
-																	  
-																   },
-
-																   complete : function(resultat, statut){
-																	  
-																   }
-
-																	});
-   
-													});
-							});
-	});
-</script>
 @stop

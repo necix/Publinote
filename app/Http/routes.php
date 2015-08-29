@@ -31,6 +31,7 @@ Route::get('/espace_tuteur', 'TutorController@index');
 Route::get('/espace_tuteur/epreuve/{n}', 'TutorController@show')->where('n', '[0-9]+');
 Route::get('/espace_tuteur/epreuve/editer_correction/{n}', 'TutorController@edit')->where('n', '[0-9]+');
 
-Route::post('/delete_qcm', 'TutorController@deleteQCM');
+Route::post('/espace_tuteur/epreuve/ajouter_qcm/', 'TutorController@add_qcm');
+Route::post('/espace_tuteur/epreuve/supprimer_qcm/', 'TutorController@delete_qcm');
 //espace admin
 Route::get('/espace_admin', 'AdminController@index');

@@ -239,4 +239,51 @@ class Test
 											->get();
 		
 	}
+	
+	public static function isQCMCorrected($epreuve_id, $numero_qcm)
+	{
+		if(!self::exists($epreuve_id))
+			throw new Exception('Test does not exists');
+		
+		if( 0 == DB::table('correction_qcm')->where('epreuve_id', $epreuve_id)
+											->where('numero_qcm', $numero_qcm)
+											->count())
+			return false;
+			
+		return true;
+	}
+	
+	public static function setQCMCorrection($epreuve_id, $numero_qcm, $bareme_id, $annule, $item_a, $item_b, $item_c, $item_d, $item_e)
+	{
+		//si la correction existe, on fait un update
+		if(self::isQCMCorrected($epreuve_id, $numero_qcm))
+			DB::table("correction_qcm")->where('epreuve_id', $epreuve_id)
+									   ->where('numero_qcm', $numero_qcm)
+									   ->update(['bareme_id' => $bareme_id,
+												'annule' => $annule,
+												'item_a' => $item_a,
+												'item_b' => $item_b,
+												'item_c' => $item_c,
+												'item_d' => $item_d,
+												'item_e' => $item_e,
+												'date_modif' => time()]);
+		else //sinon un insert
+			DB::table("correction_qcm")->insert(['epreuve_id' => $epreuve_id,
+												'numero_qcm' => $numero_qcm,
+												'bareme_id' => $bareme_id,
+												'annule' => $annule,
+												'item_a' => $item_a,
+												'item_b' => $item_b,
+												'item_c' => $item_c,
+												'item_d' => $item_d,
+												'item_e' => $item_e,
+												'date_modif' => time()]);
+	}
+	
+	public static function deleteQCMCorrection($epreuve_id, $numero_qcm)
+	{
+		DB::table("correction_qcm")->where('epreuve_id', $epreuve_id)
+								   ->where('numero_qcm', $numero_qcm)
+								   ->delete();
+	}
 }

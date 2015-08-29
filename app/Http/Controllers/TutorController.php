@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\AddCorrectionRequest;
 use App\Http\Controllers\Controller;
 use App\Test;
 use App\User;
 use App\General;
+use Session;
 
 class TutorController extends Controller
 {
@@ -51,14 +53,40 @@ class TutorController extends Controller
 		return view('tuteur.modifier_correction')->with(['first_name' => User::firstName(),
 														 'last_name' => User::lastName(),
 														 'corrections' => Test::getCorrection($epreuve_id),
-														 'baremes' => General::getBaremes()]);
+														 'baremes' => General::getBaremes(),
+														 'epreuve_id' => $epreuve_id]);
 	}
 	
-	public function deleteQCM(Request $r)
+	public function add_qcm(AddCorrectionRequest $r)
 	{
-		if(!$r->ajax())
-			abort(403);
+		//verification unicité
+		if(Test::isQCMCorrected($r->input('epreuve_id'), $r->input('numero_qcm')))
+		{
+			Session::flash('flash_message_qcm', 'Question '.$r->input('numero_qcm').' déjà existante');
+			return redirect()->back();
+		}
 		
-		return 'OK';
+		//insertion dans bdd
+		Test::setQCMCorrection($r->input('epreuve_id'),
+							   $r->input('numero_qcm'),
+							   $r->input('bareme_id'),
+							   filter_var($r->input('annule'), FILTER_VALIDATE_BOOLEAN),
+							   $r->input('item_a'),
+							   $r->input('item_b'),
+							   $r->input('item_c'),
+							   $r->input('item_d'),
+							   $r->input('item_e'));
+		//redirection vers la page d'édition
+		
+		Session::flash('flash_message_qcm', 'Question '.$r->input('numero_qcm').' ajoutée');
+		return redirect()->back();
+	}
+	
+	public function delete_qcm(Request $r)
+	{
+		Test::deleteQCMCorrection($r->input('epreuve_id'), $r->input('numero_qcm'));
+		
+		Session::flash('flash_message_qcm', 'Question '.$r->input('numero_qcm').' supprimée');
+		return redirect()->back();
 	}
 }

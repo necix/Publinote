@@ -46,7 +46,7 @@
 
 		<script>
 			$(function(){
-								$('.flashinfo').fadeOut(6000)
+								$('.flashinfo').fadeOut(3000)
 			});
 		</script>
 
