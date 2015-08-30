@@ -28,6 +28,11 @@ Visibilité : @if($test->visible == 1)
 @foreach($tutors as $tutor) {{$tutor->first_name.' '.$tutor->last_name}} <br />@endforeach
 
 <h3>Statistiques</h3>
+	@if($obsolete == true)
+		<div class="col-sm-offset-3 col-sm-6" >
+			<div class="alert alert-warning" role="alert" class="flashinfo">Le classement est désormais obsolète, veuillez le mettre à jour après avoir terminé les modifications de la correction</div>
+		</div>
+	@endif
 @if($nbGrids == 0)
 Pas de statistiques disponibles, aucune grille corrigée.
 @else

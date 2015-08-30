@@ -21,7 +21,10 @@ Tableau de bord - Tuteur
 		@foreach($tests as $test)
 		<tr >
 			<td>{{ date('j/m/Y', $test->date) }}</td>
-			<td>{{ $test->titre }}</td>
+			<td>{{ $test->titre }}
+			@if(Test::isRankingObsolete($test->id))
+			 ( classement obsolète )
+			@endif</td>
 			<td>{{ $test->ue }}</td>
 			<td>@if($test->visible == 1)
 				Affichée

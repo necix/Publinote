@@ -39,7 +39,8 @@ class TutorController extends Controller
 											 'qcmGrid' => Test::getQCMGrids($epreuve_id),
 											 'nbQCMs' => Test::nbQCMs($epreuve_id),
 											 'nbGrids' => Test::nbGrids($epreuve_id),
-											 'isTutorTest' => Test::isTutorTest(User::id(), $epreuve_id)]);
+											 'isTutorTest' => Test::isTutorTest(User::id(), $epreuve_id),
+											 'obsolete' => Test::isRankingObsolete($epreuve_id)]);
 	}
 	
 	public function edit($epreuve_id)
@@ -54,7 +55,8 @@ class TutorController extends Controller
 														 'last_name' => User::lastName(),
 														 'corrections' => Test::getCorrection($epreuve_id),
 														 'baremes' => General::getBaremes(),
-														 'epreuve_id' => $epreuve_id]);
+														 'epreuve_id' => $epreuve_id,
+														 'obsolete' => Test::isRankingObsolete($epreuve_id)]);
 	}
 	
 	public function add_qcm(AddCorrectionRequest $r)

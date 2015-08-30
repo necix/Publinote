@@ -14,7 +14,11 @@ Modification de la correction
 @stop
 
 @section('contenu')
-
+	@if($obsolete == true)
+		<div class="col-sm-offset-3 col-sm-6" >
+			<div class="alert alert-warning" role="alert" class="flashinfo">Le classement est désormais obsolète, veuillez le mettre à jour après avoir terminé les modifications de la correction</div>
+		</div>
+	@endif
 	<table class="table table-bordered table-striped table-condensed">
 		<thead>
 			<th> Numéro</th>

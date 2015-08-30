@@ -278,6 +278,7 @@ class Test
 												'item_d' => $item_d,
 												'item_e' => $item_e,
 												'date_modif' => time()]);
+		self::updateModificationDate($epreuve_id);
 	}
 	
 	public static function deleteQCMCorrection($epreuve_id, $numero_qcm)
@@ -285,5 +286,29 @@ class Test
 		DB::table("correction_qcm")->where('epreuve_id', $epreuve_id)
 								   ->where('numero_qcm', $numero_qcm)
 								   ->delete();
+		self::updateModificationDate($epreuve_id);
+	}
+	
+	public static function updateModificationDate($epreuve_id)
+	
+	{
+		DB::table('epreuve')->where('id', $epreuve_id)
+							->update(['date_modif_correction' => time()]); 
+	}
+	
+	public static function isRankingObsolete($epreuve_id)
+	{
+		//verifie qu'il y a un classement, si non retourne false
+		if(!self::isCorrected($epreuve_id))
+			return false;
+			
+		//recupère date_modif_correction
+		$date_modif_correction = DB::table('epreuve')->where('id', $epreuve_id)
+													 ->pluck('date_modif_correction');
+		//recupère date_generation
+		$date_generation_statistiques = DB::table('statistiques_epreuve')->where('epreuve_id', $epreuve_id)
+																  ->pluck('date_generation');
+		
+		return $date_modif_correction > $date_generation_statistiques;
 	}
 }
