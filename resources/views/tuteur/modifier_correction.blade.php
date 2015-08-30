@@ -59,7 +59,7 @@ Modification de la correction
 						<input type="hidden" name="epreuve_id" value="{{ $epreuve_id }}" />
 						
 						<label for="numero_qcm" > Numéro : </label>
-						<input type="number" min="1" max="100" required value="{{last($corrections)->numero+1}}" name="numero_qcm" id="numero" @if(Session::has('flash_message_qcm')) autofocus @endif/> 
+						<input type="number" min="1" max="100" required value="{{count($corrections) != 0 ? last($corrections)->numero+1 : 1}}" name="numero_qcm" id="numero" @if(Session::has('flash_message_qcm')) autofocus @endif/> 
 						{{-- autofocus si ajout ou suppression de QCM --}}
 						
 						<label for="bareme" > Barème : </label>
